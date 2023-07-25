@@ -1,16 +1,20 @@
-# DLS
-This is the latest version of the Gumi API server found inside Brave Frontier, this server
-manages the dynamic background and game api url information.
+# SLDLS
+This server is responsable for dynamic background and game api url information.
+
+The endpoint seems like is supports more games than BF, rather than the
+original one (which used Dynamic_background.php) which serves a similar
+purpose.
 
 The game checks if this server is HTTPS and the CA certificate matches the one of the game
 server.
 
-**URL**: https://api-sl.gl.gumi.sg
+**URL**: https://api-sl.bfww.gumi.sg/
 
 ## Request: /dls
 **Type**: GET
 
-The DLS request accepts and returns a JSON object called "SREE".
+The DLS request accepts and returns a JSON object called "SREE", the format of the request and the response, therefore, it's the same, what changes is the
+encrypted content of the SREE.
 
 Request and response format:
 ```
