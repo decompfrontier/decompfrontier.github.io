@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SLAPI &mdash; Decompfrontier gh-pages documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Game Server" href="../gme/index.html" />
+    <link rel="prev" title="SLDLS" href="SLDLS.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Decompfrontier
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../Architecture/index.html">Architecture</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../Architecture/index.html#server-architecture">Server Architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Architecture/index.html#client-architecture">Client Architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Architecture/index.html#java-interopratibility">Java interopratibility</a><ul class="simple">
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Network</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Gumi Live</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="SLDLS.html">SLDLS</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="SLDLS.html#request-dls">Request: /dls</a></li>
+</ul>
+</li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">SLAPI</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#accounts">Accounts</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../gme/index.html">Game Server</a><ul class="simple">
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Decompfrontier</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Network</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Gumi Live</a></li>
+      <li class="breadcrumb-item active">SLAPI</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/decompfrontier/decompfrontier.github.io/blob/master/source/pages/Network/gumilive/SLAPI.md" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="slapi">
+<h1>SLAPI<a class="headerlink" href="#slapi" title="Permalink to this heading"></a></h1>
+<p>This server is responsable for account login and billing checks.</p>
+<p>This is a newer version of the original Live API server, which
+seems to be made to support other games than BF as well.</p>
+<p><strong>URL</strong>: https://api-sl.gl.gumi.sg/
+<strong>Decomp</strong>: This code is available in the class GumiLiveNetworkManagement</p>
+<p>The client will send a custom header to any of this request which is constructed by the following:
+<code class="docutils literal notranslate"><span class="pre">GCLIENTID:</span> <span class="pre">(PlatformName)_(AppId)</span></code></p>
+<p>for example:
+<code class="docutils literal notranslate"><span class="pre">GCLIENTID:</span> <span class="pre">Android_sg.gumi.bravefrontier</span></code></p>
+<section id="accounts">
+<h2>Accounts<a class="headerlink" href="#accounts" title="Permalink to this heading"></a></h2>
+<p>This API is responsable for login and creating new accounts, also manages Facebook login.</p>
+<p>This API contains a bunch of generic PHP arguments listed here:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Example</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>dn</p></td>
+<td><p>Device model</p></td>
+<td><p>GT-I9505</p></td>
+</tr>
+<tr class="row-odd"><td><p>dp</p></td>
+<td><p>Device platform</p></td>
+<td><p>android</p></td>
+</tr>
+<tr class="row-even"><td><p>vid</p></td>
+<td><p>Device virtual id</p></td>
+<td><p>uuid</p></td>
+</tr>
+<tr class="row-odd"><td><p>v</p></td>
+<td><p>System version</p></td>
+<td><p>9</p></td>
+</tr>
+<tr class="row-even"><td><p>device_id</p></td>
+<td><p>Device ID</p></td>
+<td><p>id</p></td>
+</tr>
+<tr class="row-odd"><td><p>altvid</p></td>
+<td><p>Device alternative vid</p></td>
+<td><p>uuid</p></td>
+</tr>
+<tr class="row-even"><td><p>identifiers</p></td>
+<td><p>Custom data specific to the platform</p></td>
+<td><p>{“a”: “b”}</p></td>
+</tr>
+<tr class="row-odd"><td><p>ak</p></td>
+<td><p>Game API key</p></td>
+<td><p>0839899613932562</p></td>
+</tr>
+</tbody>
+</table>
+<section id="request-accounts-signup">
+<h3>Request: /accounts/signup/<a class="headerlink" href="#request-accounts-signup" title="Permalink to this heading"></a></h3>
+<p><strong>Type</strong>: GET</p>
+<p>This request tries to register a new user to the API server.</p>
+<p>Custom PHP arguments:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Example</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>username</p></td>
+<td><p>Username</p></td>
+<td><p>arves100</p></td>
+</tr>
+<tr class="row-odd"><td><p>password</p></td>
+<td><p>Password</p></td>
+<td><p>0000</p></td>
+</tr>
+</tbody>
+</table>
+<p>Response:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Unknown</span><span class="o">...</span>
+</pre></div>
+</div>
+</section>
+<section id="request-accounts-guest-login">
+<h3>Request: /accounts/guest/login/<a class="headerlink" href="#request-accounts-guest-login" title="Permalink to this heading"></a></h3>
+<p><strong>Type</strong>: GET</p>
+<p>This request tries to login a normal user to the API server.</p>
+<p>Response:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;string&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;game_user_id&quot;</span><span class="p">,</span> <span class="s2">&quot;string&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;token&quot;</span><span class="p">:</span> <span class="s2">&quot;string&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;status_no&quot;</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="s2">&quot;servers&quot;</span><span class="p">:</span> <span class="p">{}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Optional</p></th>
+<th class="head"><p>Possible values</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>status</p></td>
+<td><p>If the request was a success or not</p></td>
+<td><p>No</p></td>
+<td><p>“successful” or “error”</p></td>
+</tr>
+<tr class="row-odd"><td><p>game_user_id</p></td>
+<td><p>Player user ID</p></td>
+<td><p>No</p></td>
+<td><p>a string</p></td>
+</tr>
+<tr class="row-even"><td><p>token</p></td>
+<td><p>Token that can be used for identify the user</p></td>
+<td><p>No</p></td>
+<td><p>a string</p></td>
+</tr>
+<tr class="row-odd"><td><p>status_no</p></td>
+<td><p>ID of the error (if any)</p></td>
+<td><p>No</p></td>
+<td><p>See the list of possible status_no</p></td>
+</tr>
+<tr class="row-even"><td><p>servers</p></td>
+<td><p>Unknown</p></td>
+<td><p>No</p></td>
+<td><p>Empty json array ({})</p></td>
+</tr>
+</tbody>
+</table>
+<p>List of possible status ID:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>ID</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0</p></td>
+<td><p>Success</p></td>
+</tr>
+<tr class="row-odd"><td><p>1</p></td>
+<td><p>Generic error</p></td>
+</tr>
+<tr class="row-even"><td><p>15</p></td>
+<td><p>Invalid “ak” (API Key)</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="request-accounts-facebook-login">
+<h3>Request: /accounts/facebook/login/<a class="headerlink" href="#request-accounts-facebook-login" title="Permalink to this heading"></a></h3>
+<p><strong>Type</strong>: GET</p>
+<p>This request tries to do a Facebook login to the API server.</p>
+<p>Response:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Same</span> <span class="k">as</span> <span class="o">/</span><span class="n">guest</span><span class="o">/</span><span class="n">login</span><span class="o">/</span><span class="p">,</span> <span class="n">refeer</span> <span class="n">to</span> <span class="n">that</span> <span class="n">response</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="SLDLS.html" class="btn btn-neutral float-left" title="SLDLS" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../gme/index.html" class="btn btn-neutral float-right" title="Game Server" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023 Arves100.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

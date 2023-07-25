@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Architecture &mdash; Decompfrontier gh-pages documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Network" href="../Network/index.html" />
+    <link rel="prev" title="Welcome to DecompFrontier wiki" href="../../index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Decompfrontier
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Architecture</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#server-architecture">Server Architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#client-architecture">Client Architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#java-interopratibility">Java interopratibility</a><ul class="simple">
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../Network/index.html">Network</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Network/gumilive/index.html">Gumi Live</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../Network/gumilive/SLDLS.html">SLDLS</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../Network/gumilive/SLDLS.html#request-dls">Request: /dls</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../Network/gumilive/SLAPI.html">SLAPI</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../Network/gumilive/SLAPI.html#accounts">Accounts</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../Network/gme/index.html">Game Server</a><ul class="simple">
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Decompfrontier</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Architecture</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/decompfrontier/decompfrontier.github.io/blob/master/source/pages/Architecture/index.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="architecture">
+<h1>Architecture<a class="headerlink" href="#architecture" title="Permalink to this heading"></a></h1>
+<p>The following page aims to give a small introduction on Brave Frontier concepts, keep in mind that you most likely would need to spend time
+investigating and researching but this page might give some hints on how the basic works.</p>
+<section id="server-architecture">
+<h2>Server Architecture<a class="headerlink" href="#server-architecture" title="Permalink to this heading"></a></h2>
+<p>Brave Frontier uses an external game server for initial authentication, this was done to support
+multiple auths such as Apple or Facebook one.</p>
+<p>This server is known as the Gumi Live Api, and is responsable for billing, account managment and dynamic background and
+version checking.</p>
+<p>Once the login has been successful, the game talks back to one main server which was written in PHP, this server is known as the
+GME server and it governates all the server oprations that is being done inside Brave Frontier.</p>
+<p>An external CDN server (Amazon S3), was also used for resource downloading.</p>
+<p>Raid servers were separated from the original Brave Frontier GME server and they act as their own living entities separated from the
+rest, the game supported more than one Raid server in which, each of them, had their own specific URL access.</p>
+</section>
+<section id="client-architecture">
+<h2>Client Architecture<a class="headerlink" href="#client-architecture" title="Permalink to this heading"></a></h2>
+<p>The client is written in C++ with the use of the Cocos2d-x (v2) engine, the game code is stored in binary
+form, in Android is inside the lib folder (libgame.so) while in Windows it’s the actual executable (BraveFrontier.exe)</p>
+<p>Cocos2d-x, for letting the game startup and access specific functionalities of the Android API which are not, by default,
+exposed to the C++ API, allows to implement a custom Java startup on top of the existing Cocos2d-x (which sets up rendering and so on).
+This is the reason why Brave Frontier, on top of the actual game C++ code, contains utility and helping functions stored inside the Java part,
+which does a bunch of important things such as Server packet cryptation.</p>
+<p>The following picture descrives how Brave Frontier starts up in the Android code:</p>
+<p><strong>NOTE</strong>: You can find this code inside Classesfor the C++ version and proj.androidsrc for the Java version in the Client decomp.</p>
+<img alt="../../_images/androidstartup.png" src="../../_images/androidstartup.png" />
+<ol class="arabic simple">
+<li><p>The Android OS will start the game based from the specification of the AndroidManifest, therefore it will launch BF base class</p></li>
+<li><p>The base class with initialize itself and all the extra components like Facebook, Tapjoy, Google Play and so on</p></li>
+<li><p>The base class will also load the actual game binary (libgame.so)</p></li>
+<li><p>The base class will now call cocos2d-x initialization, which starts up components like rendering</p></li>
+<li><p>Finally, once everything is ready, the main native entrypoint is executed and the execution of the code passes from Java to C++.</p></li>
+</ol>
+</section>
+<section id="java-interopratibility">
+<h2>Java interopratibility<a class="headerlink" href="#java-interopratibility" title="Permalink to this heading"></a></h2>
+<p>As we have Java and C++ going on in the Android version, the following diagram shows an example of the function
+<cite>‘std::string Utils::getDeviceUUID()’</cite> which will communicate back to the Java function <cite>‘String sg.gumi.bravefrontier.BraveFrontierJNI.getDeviceUUID()’</cite></p>
+<p>In the way Brave Frontier is structured, almost all game-related Java interopratibility code is stored inside the BraveFrontierJNI class.</p>
+<p>The following picture shows what happens when the game will attempt to do a Java call from C++:</p>
+<p><strong>NOTE</strong>: You can find the code inside the decomp, look for Utils.cpp inside Classes and BraveFrontierJNI.java for how the implementation was done.</p>
+<img alt="../../_images/javainterop.png" src="../../_images/javainterop.png" />
+<p>Cocos2d-x provides utilities functions to simplify the work of interopratibility, this code is only present in the Android version of the game.</p>
+<div class="toctree-wrapper compound" id="toc-architecture">
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../../index.html" class="btn btn-neutral float-left" title="Welcome to DecompFrontier wiki" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../Network/index.html" class="btn btn-neutral float-right" title="Network" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023 Arves100.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
