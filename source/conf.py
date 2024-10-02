@@ -3,7 +3,7 @@
 # -- Project information
 
 project = 'Decompfrontier'
-copyright = '2023 Arves100'
+copyright = '2023-2024 Arves100'
 author = 'Arves100'
 
 release = 'gh-pages'
@@ -16,8 +16,9 @@ extensions = [
     'sphinx.ext.autodoc',
     'sphinx.ext.autosummary',
     'sphinx.ext.intersphinx',
+    'sphinx.ext.todo',
     'myst_parser',
-    'sphinx_rtd_theme',
+    'sphinx_immaterial'
 ]
 
 intersphinx_mapping = {
@@ -33,9 +34,12 @@ templates_path = ['_templates']
 # This pattern also affects html_static_path and html_extra_path.
 exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 
+# Display todos by setting to True
+todo_include_todos = True
+
 # -- Options for HTML output
 
-html_theme = 'sphinx_rtd_theme'
+html_theme = 'sphinx_immaterial'
 
 
 html_context = {
@@ -47,9 +51,7 @@ html_context = {
 }
 
 html_theme_options = {
-    'logo_only': False,
-    'display_version': True,
-    'collapse_navigation': False
+
 }
 
 # -- Options for EPUB output

@@ -5,7 +5,7 @@ Developer's documentation for Brave Frontier content
 - Python 3
 - sphinx
 - myst-parser
-- sphinx_rtd_theme
+- sphinx-immaterial
 
 ## Building
 cd docs

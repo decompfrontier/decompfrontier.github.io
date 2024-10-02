@@ -16,3 +16,6 @@ and formats of Brave Frontier (v2.19.6.0)
 
     pages/Architecture/index
     pages/Network/index
+    pages/Tutorial/index
+    pages/TODO/index
+    
