@@ -12,3 +12,4 @@ you would find how several things were designed in this page.
     :maxdepth: 3
 
     General-architecture
+    Offlinemod-architecture
