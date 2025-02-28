@@ -3,7 +3,7 @@
 # -- Project information
 
 project = 'Decompfrontier'
-copyright = '2023-2024 Arves100'
+copyright = '2023-2025 Arves100'
 author = 'Arves100'
 
 release = 'gh-pages'
@@ -18,7 +18,8 @@ extensions = [
     'sphinx.ext.intersphinx',
     'sphinx.ext.todo',
     'myst_parser',
-    'sphinx_immaterial'
+    'sphinx_immaterial',
+    'sphinxnotes.strike'
 ]
 
 intersphinx_mapping = {

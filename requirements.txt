@@ -1,0 +1,4 @@
+sphinx>=8.2
+myst_parser>=4.0
+sphinx_immaterial>=0.13
+sphinxnotes-strike>=1.2.1

@@ -13,8 +13,8 @@ Code
     + [ ] Is it really a good architecture? I'm afraid there's a lot more that can be borrowed as a lession from Spring/ASP.NET
     + [ ] HIGH PRIORITY: Remove all the current MST/Packet classes and switch to an external generator like with Python. This can help with external tools and having an unified packet/mst definition for stuff like decomp as well. (Parsing the responses with a decomp is a big redundant work)
     + [ ] Implement actual info saving routines, nothing is really saved or connected atm
-    + [ ] Find a way to avoid restarting the app to run the migrations, possibly run the migrations before the server boots up (seems like a Drogon skill issue by me)
-    + [ ] Implement proper DLL entrypoint
+    + [x] :del:`Find a way to avoid restarting the app to run the migrations, possibly run the migrations before the server boots up (seems like a Drogon skill issue by me)` Fixed in https://github.com/decompfrontier/server/commit/0069e4e99dad9052ceb5e86bd771f967f724f7ca
+    + [ ] Implement proper DLL entrypoint (Java ok: https://github.com/decompfrontier/client/blob/main/proj.android/app/src/main/java/it/arves100/gimuserver/OfflineMod.java, Win32 proxy ok: https://github.com/decompfrontier/offline-proxy/commit/d1b9c70d6d3414b7f44d69496613e4ce7cbac223)
 
 Unit managment
 -----------------------------
@@ -67,7 +67,7 @@ Quests
 .. task-list ::
     :custom:
 
-    + [  ] Properly decide a format for all missions and stuff ( [this](https://github.com/cheahjs/bravefrontier_data/tree/master/missions_parsed) can this help? )
+    + [  ] Properly decide a format for all missions and stuff ( https://github.com/cheahjs/bravefrontier_data/tree/master/missions_parsed can help? )
     + [  ] Decode and document everything for quests/missions/AI
     + [  ] Start one mission (during the login tutorial test)
     + [  ] Do one zone of the mission (Grand Gaia -> Mistral)
@@ -113,7 +113,7 @@ General QoL (not priorities but can definitly help people to discover and docume
 .. task-list ::
     :custom:
 
-    + [  ] Minimal? HTML Admin tool to modify all the parameters of unit/unitteam/player
+    + [  ] Minimal (?) HTML Admin tool to modify all the parameters of unit/unitteam/player
     + [  ] External tool to modify all the JSONs in deploy/ directory and BF MSTs
 
 To define/think about them
@@ -122,7 +122,7 @@ To define/think about them
 .. task-list ::
     :custom:
 
-    + [  ] Should social features (friends, arena, colosseum should be done?)
+    + [  ] Social features (friends, arena, colosseum should be done?)
     + [  ] Grand quests
     + [  ] Randal capital (crafting, achievements, keys)
     + [  ] Raid

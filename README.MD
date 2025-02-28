@@ -1,12 +1,8 @@
 # decompfrontier
-Developer's documentation for Brave Frontier content
+Developer's documentation for the DecompFrontier project.
 
 ## Dependencies
-- Python 3
-- sphinx
-- myst-parser
-- sphinx-immaterial
+Install Python3 and then run "pip install -r requirements.txt"
 
 ## Building
-cd docs
-make html
+Simply run "make" (you need GNU make installed in your system if you are running Linux).
