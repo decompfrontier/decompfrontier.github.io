@@ -4,7 +4,7 @@
 
 project = 'Decompfrontier'
 copyright = '2023-2025 Arves100'
-author = 'Arves100'
+author = 'Arves100 & contributors.'
 
 release = 'gh-pages'
 
@@ -52,7 +52,56 @@ html_context = {
 }
 
 html_theme_options = {
-
+  "site_url": "https://decompfrontier.github.io/",
+  "repo_url": "https://github.com/decompfrontier/decompfrontier.github.io/",
+  "repo_name": "decompfrontier.github.io",
+  "edit_uri": "blob/main/source",
+  "globaltoc_collapse": True,
+  "features": [
+    "navigation.expand",
+    "navigation.sections",
+    "navigation.footer",
+    "navigation.top",
+    "search.share",
+    "search.suggest",
+    "toc.follow",
+    "toc.sticky",
+    "content.tabs.link",
+    "content.code.copy",
+    "content.action.edit",
+    "content.action.view",
+    "content.tooltips",    
+  ],
+  "palette": [
+      {
+          "media": "(prefers-color-scheme)",
+          "toggle": {
+              "icon": "material/brightness-auto",
+              "name": "Switch to light mode",
+          },
+      },
+      {
+          "media": "(prefers-color-scheme: light)",
+          "scheme": "default",
+          "primary": "light-green",
+          "accent": "light-blue",
+          "toggle": {
+              "icon": "material/lightbulb",
+              "name": "Switch to dark mode",
+          },
+      },
+      {
+          "media": "(prefers-color-scheme: dark)",
+          "scheme": "slate",
+          "primary": "deep-orange",
+          "accent": "lime",
+          "toggle": {
+              "icon": "material/lightbulb-outline",
+              "name": "Switch to system preference",
+          },
+      },
+  ],
+  "toc_title_is_page_title": True,
 }
 
 # -- Options for EPUB output
