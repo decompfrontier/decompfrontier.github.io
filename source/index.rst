@@ -4,7 +4,7 @@ Welcome to the DecompFrontier Wiki
 This wiki contains developer's documentation and analysis of the architecture, protocol
 and formats of the Brave Frontier (v2.19.6.0) game.
 
-.. Notice::
+.. note::
 
    Please be mindful that the current project is a work in progress
    so the documents are liable to change with future discoveries.
