@@ -5,8 +5,8 @@ This page shows the current status of the server and client project.
 
 .. warning::
     
-    Keep in mind that the project is done by volounteers on their free time, therefore do not threat this
-    page as a schedule, if you want to help the project move faster start contributing ;)
+    Please be mindful that this project is done by volounteers in their spare time, as such do not treat this
+    page like a schedule for release, if you want to help the project move faster, reach out to start contributing ;)
 
 .. toctree::
     :caption: Status
