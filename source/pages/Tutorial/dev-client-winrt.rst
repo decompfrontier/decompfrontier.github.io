@@ -1,5 +1,5 @@
 Setting Up a Development Game Client (Windows 8.1+)
-=====================================================
+=======================================================
 
 Requirements
 ------------
@@ -160,9 +160,13 @@ Install the newly generated ``BraveFrontierPatched.appx`` file and launch the cl
 .. warning::
 
    If no console appears, check the following:
-   -Ensure the patched ``libcurl.dll`` was correctly installed.
-   -Verify you did not use the ``deploy`` preset, as it is not supported in this build.
-   -Confirm Developer Mode is enabled on your Windows PC.
+   
+   -
+    Ensure the patched ``libcurl.dll`` was correctly installed.
+   -
+    Verify you did not use the ``deploy`` preset, as it is not supported in this build.
+   -
+    Confirm Developer Mode is enabled on your Windows PC.
 
 Connecting to the Server
 ~~~~~~~~~~~~~~~~~~~~~~~~
