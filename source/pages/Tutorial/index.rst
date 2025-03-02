@@ -4,15 +4,15 @@ Tutorial
 This page aims to hold some tutorials/help to setup the decompfrontier repositories and similar
 administration stuff.
 
-.. warning::
+.. important::
 
     The Brave Frontier Windows client currently *DOES NOT* work
     under Wine as Wine does not support WinRT/XAML Apps.
     Use of a Virtual machine is suggested for running the client.
 
-.. warning::
+.. note::
 
-    Currently only running the client trough Windows is supported,
+    The client only supports Windows currently,
     Android or iOS patches are not supported yet.
 
 .. toctree::
