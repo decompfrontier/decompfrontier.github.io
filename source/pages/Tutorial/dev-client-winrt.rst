@@ -74,8 +74,10 @@ Take note of the certificate's **Thumbprint**, as it will be used to export the 
 
 .. note::
 
-   - Replace ``<Your Password>`` with a strong password of your choosing.
-   - Replace ``<Certificate Thumbprint>`` with the Thumbprint from the previous step.
+   -
+    Replace ``<Your Password>`` with a strong password of your choosing.
+   -
+    Replace ``<Certificate Thumbprint>`` with the Thumbprint from the previous step.
 
 You should now have a ``MyKey.pfx`` file. Keep this file safe, as it will be used to sign the modified Brave Frontier client.
 
@@ -108,10 +110,15 @@ A new folder named ``BraveFrontierAppxClient`` will be created, containing the e
 
 1. Copy the ``libcurl.dll`` file from the "Building the Proxy" section and place it in the root of the ``BraveFrontierAppxClient`` directory. When prompted to replace the original file, select ``Yes``.
 2. Delete the following files from the ``BraveFrontierAppxClient`` directory:
-   - ``AppxMetadata``
-   - ``AppxSignature.p7x``
-   - ``AppxBlockMap.xml``
-   - ``ApplicationInsights.config``
+
+   -
+    ``AppxMetadata``
+   -
+    ``AppxSignature.p7x``
+   -
+    ``AppxBlockMap.xml``
+   -
+    ``ApplicationInsights.config``
 3. Open ``AppxManifest.xml`` in a text editor (e.g., Notepad++) and locate this line:
 
    ::
