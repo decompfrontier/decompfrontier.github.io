@@ -6,7 +6,7 @@ Requirements
 
 * Visual Studio or Visual Studio Build Tools installed on your system
 * `Microsoft Visual C++ Runtime Package 12.0 for x86 <https://github.com/M1k3G0/Win10_LTSC_VP9_Installer/blob/master/Microsoft.VCLibs.120.00_12.0.21005.1_x86__8wekyb3d8bbwe.appx>`_
-* A copy of the Brave Frontier package (APPX) for Windows (`Microsoft Store link <https://www.microsoft.com/en-us/store/apps/brave-frontier/9nblggh3lh08&v=JIPsEVwowzA>`_)
+* A copy of the Brave Frontier package (APPX) for Windows (`Share Drive link <https://drive.google.com/file/d/1NB64gzQOe-QQx9fY0mkoZiCSfe3WlTYi/view?usp=sharing>`_)
 * Developer Mode enabled on your system
 
 .. warning::
