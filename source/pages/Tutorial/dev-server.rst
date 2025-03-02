@@ -1,67 +1,72 @@
-Setting up a development game server
-================================================
+Setting Up a Development Game Server
+====================================
 
 Requirements
------------------------
+------------
 
-* A C++17 or greater compiler (like Visual Studio or GCC)
+* A C++17 or later compiler (e.g., Visual Studio or GCC)
 * CMake
 * vcpkg
-* git
-* A way to launch the game client (see below for the supported methods)
+* Git
+* A method to launch the game client (see supported methods below)
 
-Cloning the repo
------------------------
+Cloning the Repository
+----------------------
 
-Clone the server repository:
-    git clone --depth=1 https://github.com/decompfrontier/server
+To clone the server repository, run the following command:
 
-Setting up vcpkg
--------------------------
+    ``git clone --depth=1 https://github.com/decompfrontier/server``
 
-Clone the `vcpkg repository <https://github.com/microsoft/vcpkg>`_ and bootstrap vcpkg:
-    bootstrap-vcpkg -disableMetrics
+Setting Up vcpkg
+----------------
 
-.. admonition:: Windows-only extra steps
+Clone the `vcpkg repository <https://github.com/microsoft/vcpkg>`_ and bootstrap vcpkg with metrics disabled:
 
-    You also need to open an elevated command prompt and type `vcpkg integrate install` in your
-    vcpkg directory.
+    ``bootstrap-vcpkg -disableMetrics``
 
-Setup an system or user environment variable called `VCPKG_ROOT` which points to your vcpkg installation directory.
+.. admonition:: Windows-Only Extra Steps
 
-Setting up the server
------------------------------
+    On Windows, open an elevated Command Prompt and run the following command in your vcpkg directory:
 
-Using cmake, select the preset `Development config for XXXXX (64-bit)` depending on your operative system. (or use cmake --preset debug-win64, debug-lnx64 or debug-osx64)
+    ``vcpkg integrate install``
 
-Configure and then generate the target project.
+Next, set up a system or user environment variable named ``VCPKG_ROOT`` pointing to your vcpkg installation directory.
 
-Once you build the project, you will have a binary called "gimuserverw", this binary is your
-development start that you should run and debug to develop new functionalities.
+Setting Up the Server
+---------------------
 
-Download the assets `21900.zip <https://drive.google.com/file/d/1ApVcJISPovYuWEidnkkTJi_NI8sD1Xmx/view>`_  to your `server repository/deploy/system/game_server` (if the folder does not exist create it)
+Using CMake, select the preset ``Development config for XXXXX (64-bit)`` based on your operating system. Alternatively, use one of these commands:
 
-Extract `assets.zip` from the `21900.zip` like so:
+- ``cmake --preset debug-win64`` (Windows)
+
+- ``cmake --preset debug-lnx64`` (Linux)
+
+- ``cmake --preset debug-osx64`` (macOS)
+
+Configure and generate the target project. After building, you’ll get a binary named ``gimuserverw``. This is your development server executable, which you can run and debug to implement new features.
+
+Download the assets from `21900.zip <https://drive.google.com/file/d/1ApVcJISPovYuWEidnkkTJi_NI8sD1Xmx/view>`_ and place them in the ``server repository/deploy/system/game_server`` directory. If this folder doesn’t exist, create it.
+
+Extract ``assets.zip`` from ``21900.zip`` as shown below:
 
 .. image:: ../../images/archive_21900.png
 
-Open `assets.zip` and inside, extract the two folders (`content` and `mst`) inside the `deploy/game_content`:
+Open ``assets.zip`` and extract the ``content`` and ``mst`` folders into ``deploy/game_content``:
 
 .. image:: ../../images/assets_zip.png
 
-You should have two folders called `content` and `mst` inside the `game_content` folder, like so:
+After extraction, you should have two folders, ``content`` and ``mst``, inside ``game_content``:
 
 .. image:: ../../images/servercontent_root.png
 
-The content of the `content` folder should contain the following assets:
+The ``content`` folder should contain the following assets:
 
 .. image:: ../../images/servercontent_content.png
 
-The content of the `mst` folder should contain the following assets:
+The ``mst`` folder should contain these assets:
 
 .. image:: ../../images/servercontent_mst.png
 
-You can modify the server configuration by editing the JSON files contained inside the `system` directory,
-you can also setup extra settings inside the `gimuconfig.json` and adjust Drogon-specific settings inside the `config.json`.
+To modify the server configuration, edit the JSON files in the ``system`` directory. You can also adjust additional settings in ``gimuconfig.json`` and tweak Drogon-specific options in ``config.json``.
 
-You should now have an environment ready to begin developing the Brave Frontier emulator.
+Your environment is now ready for developing the Brave Frontier emulator!
