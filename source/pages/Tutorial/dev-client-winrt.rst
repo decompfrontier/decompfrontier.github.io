@@ -1,188 +1,179 @@
-Setting up a development game client (Windows 8.1+)
-=======================================================
+Setting Up a Development Game Client (Windows 8.1+)
+==================================================
 
 Requirements
------------------
+------------
 
-* Visual Studio or Visual Studio build tools installed in the system
+* Visual Studio or Visual Studio Build Tools installed on your system
 * `Microsoft Visual C++ Runtime Package 12.0 for x86 <https://github.com/M1k3G0/Win10_LTSC_VP9_Installer/blob/master/Microsoft.VCLibs.120.00_12.0.21005.1_x86__8wekyb3d8bbwe.appx>`_
 * A copy of the Brave Frontier package (APPX) for Windows (`Microsoft Store link <https://www.microsoft.com/en-us/store/apps/brave-frontier/9nblggh3lh08&v=JIPsEVwowzA>`_)
-* Developer mode installed
+* Developer Mode enabled on your system
 
 .. warning::
 
-    If the developer mode is not installed or enabled in Windows, the proxy will not work and you will not see the command prompt
+   If Developer Mode is not installed or enabled in Windows, the proxy will not function, and you will not see the command prompt.
 
-Cloning the repo
------------------------
+Cloning the Repository
+----------------------
 
-Clone the server repository:
+To clone the server repository, run the following command:
+
+::
+
     git clone --depth=1 https://github.com/decompfrontier/server
 
-Building the proxy
------------------------
+Building the Proxy
+------------------
 
 .. warning::
 
-    The client is supported *ONLY* in 32-bit platforms. Make sure to use the MINGW32
-    (i686-w64-mingw32) toolchain
+   The client *only* supports 32-bit platforms. Ensure you use the MINGW32 (i686-w64-mingw32) toolchain.
 
-Using cmake, configure the proxy to use either `debug-vs` if you are using Visual Studio
-as your compiler or `debug-mingw` if you are using MSYS/MinGW as your compiler. (cmake --preset debug-vs or debug-mingw)
+Using CMake, configure the proxy with one of the following options:
 
-After you've completed the compilation, you should see inside your cmake build directory a `bin` folder,
-inside that folder you should find a `libcurl.dll`.
+* For Visual Studio as your compiler: ``cmake --preset debug-vs``
+* For MSYS/MinGW as your compiler: ``cmake --preset debug-mingw``
 
-Keep track of that file as it's going to be required later for the tutorial.
+After compilation, navigate to your CMake build directory. Inside the ``bin`` folder, you should find a ``libcurl.dll`` file. Keep track of this file, as it will be required later in the tutorial.
 
-Generating the UWP development certificates
--------------------------------------------------------
+Generating UWP Development Certificates
+---------------------------------------
 
 .. warning::
-    It is recommended that you remove this certificates when they are no longer necessary to prevent them from being used to compromise system trust.
+
+   It is recommended to remove these certificates when they are no longer needed to prevent them from compromising system trust.
 
 .. important::
 
-    All the following commands are executed in a `Powershell`, please make sure
-    to execute one otherwise the system won't be able to find the required applications.
+   All commands in this section must be executed in PowerShell. Ensure you are using PowerShell, or the system will not recognize the required applications.
 
-.. info::
+.. note::
 
-    If you have already generated a PFX certificate before for deploying applications to the Windows
-    Store, or you have already followed up this part of the tutorial, skip directory to the `Modifying Brave Frontier APPX`
-    section.
+   If you have previously generated a PFX certificate for deploying applications to the Windows Store or have already completed this section, skip ahead to the "Modifying Brave Frontier APPX" section.
 
-.. info::
+.. hint::
 
-    This section contains a simplified step adopted from `the following page <https://learn.microsoft.com/en-us/windows/msix/package/create-certificate-package-signing>`_ in MSDN
+   This section provides a simplified process adapted from `this MSDN page <https://learn.microsoft.com/en-us/windows/msix/package/create-certificate-package-signing>`_.
 
-In order to install custom Windows Store apps, one should first generate a development certificate to
-allow the installation.
+To install custom Windows Store apps, you must first generate a development certificate. Run the following command in PowerShell to create a certificate:
 
-Run the following command to create a certificate:
+::
 
+    New-SelfSignedCertificate -Type Custom -Subject "CN=<Name>" -KeyUsage DigitalSignature -FriendlyName "Your friendly name goes here" -CertStoreLocation "Cert:\CurrentUser\My" -TextExtension @("2.5.29.37={text}1.3.6.1.5.5.7.3.3", "2.5.29.19={text}")
 
-    New-SelfSignedCertificate -Type Custom -Subject "CN=<Name>" -KeyUsage DigitalSignature -FriendlyName "Your friendly name goes here" -CertStoreLocation "Cert:\\CurrentUser\\My" -TextExtension @("2.5.29.37={text}1.3.6.1.5.5.7.3.3", "2.5.29.19={text}")
+.. note::
 
-.. info::
-    
-    Replace <Name> with any name you want (like My BraveFrontier) and write down this name, it's going
-    to be required later in the tutorial.
+   Replace ``<Name>`` with a name of your choice (e.g., "My BraveFrontier"). Write down this name, as it will be needed later.
 
-Remember the Thumbprint as it's going to be used to export the certificate.
+Take note of the certificate's **Thumbprint**, as it will be used to export the certificate. Then, run the following commands to export it:
 
-Run the following commands to export the certificate:
+::
 
-    $password = ConvertTo-SecureString -String <Your Password> -Force -AsPlainText 
+    $password = ConvertTo-SecureString -String "<Your Password>" -Force -AsPlainText
+    Export-PfxCertificate -cert "Cert:\CurrentUser\My\<Certificate Thumbprint>" -FilePath MyKey.pfx -Password $password
 
-    Export-PfxCertificate -cert "Cert:\\CurrentUser\\My\\<Certificate Thumbprint>" -FilePath MyKey.pfx -Password $password
+.. note::
 
-.. info::
+   - Replace ``<Your Password>`` with a strong password of your choosing.
+   - Replace ``<Certificate Thumbprint>`` with the Thumbprint from the previous step.
 
-    Replace <Your Password> with a possibly strong password.
+You should now have a ``MyKey.pfx`` file. Keep this file safe, as it will be used to sign the modified Brave Frontier client.
 
-    Replace <Certificate Thumbprint> with the Thumbprint shown before.
+Installing the Certificate
+~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-You should now have a `MyKey.pfx` file, keep track of this file as this is the certificate that we're going
-to use to sign our hacked Brave Frontier client.
-
-Installing the certificate
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Open your MyKey.pfx file this will bring the Certificate Import Wizard.
-
-Select `Local Machine`, then go next up to the certificate store, you have to select `Place all certificates in the
-following store`, browse a store and select `Trusted Root Certification Authorities`, then press Finish and then Yes.
+1. Open the ``MyKey.pfx`` file to launch the Certificate Import Wizard.
+2. Select ``Local Machine`` and proceed.
+3. When prompted for the certificate store, choose ``Place all certificates in the following store``.
+4. Browse and select ``Trusted Root Certification Authorities``.
+5. Click ``Finish``, then confirm with ``Yes`` when prompted.
 
 .. image::
     ../../images/certpath_win.png
 
 Modifying Brave Frontier APPX
-------------------------------------
+-----------------------------
 
 .. important::
 
-    All the following commands are executed in a `Developet command prompt for VS`, please make sure
-    to execute one otherwise the system won't be able to find the required applications.
+   All commands in this section must be executed in a Developer Command Prompt for Visual Studio. Ensure you use this environment, or the required tools will not be recognized.
 
-Run the following command to unpack the game client:
+To unpack the game client, run the following command:
+
+::
 
     makeappx unpack /p gumi.BraveFrontier_2.19.6.0_x86__tdae4wqex79w6.appx /d BraveFrontierAppxClient
 
-A new folder called `BraveFrontierAppxClient` should be created now, this folder contains the extracted game client that
-we're going to modify.
+A new folder named ``BraveFrontierAppxClient`` will be created, containing the extracted game client files for modification.
 
-Copy the file `libcurl.dll` from the previous part of the tutorial and place it in the root of the `BraveFrontierAppxClient` directory,
-when asked to replace the original file say Yes.
+1. Copy the ``libcurl.dll`` file from the "Building the Proxy" section and place it in the root of the ``BraveFrontierAppxClient`` directory. When prompted to replace the original file, select ``Yes``.
+2. Delete the following files from the ``BraveFrontierAppxClient`` directory:
+   - ``AppxMetadata``
+   - ``AppxSignature.p7x``
+   - ``AppxBlockMap.xml``
+   - ``ApplicationInsights.config``
+3. Open ``AppxManifest.xml`` in a text editor (e.g., Notepad++) and locate this line:
 
-Remove the following files from the `BraveFrontierAppxClient` directory:
+   ::
 
-* AppxMetadata
-* AppxSignature.p7x
-* AppxBlockMap.xml
-* ApplicationInsights.config
+       <Identity Name="gumi.BraveFrontier" Publisher="CN=5AA816A3-ED94-4AA2-A2B4-3ADDA1FABFB6" Version="2.19.6.0" ProcessorArchitecture="x86" />
 
-Open the file `AppxManifest.xml` with any text editor (like Notepad++) and search for the following string:
+   Replace ``CN=5AA816A3-ED94-4AA2-A2B4-3ADDA1FABFB6`` with ``CN=<Name>``, where ``<Name>`` matches the name used during certificate generation (e.g., "My BraveFrontier"). This ensures the application installs correctly.
 
-    <Identity Name="gumi.BraveFrontier" Publisher="CN=5AA816A3-ED94-4AA2-A2B4-3ADDA1FABFB6" Version="2.19.6.0" ProcessorArchitecture="x86" />
+4. (Optional) Modify the ``Properties`` tag to customize the app’s display details, such as:
 
-Replace the part `CN=5AA816A3-ED94-4AA2-A2B4-3ADDA1FABFB6` with `CN=<Name>`, this name has to match the exact name that you used during the
-certificate generation process, otherwise the application will not install.
+   ::
 
-You can also modify, if you want, the `Properties` tag to change the display of the application (like display name or publisher) by
-modifying this part of the file:
+       <Properties>
+           <DisplayName>Brave Frontier</DisplayName>
+           <PublisherDisplayName>株式会社gumi</PublisherDisplayName>
+           <Logo>Assets\StoreLogo.png</Logo>
+       </Properties>
 
-    <Properties>
-        <DisplayName>Brave Frontier</DisplayName>
+5. (Optional) To change the app’s name in the Windows Start menu, edit this tag:
 
-        <PublisherDisplayName>株式会社gumi</PublisherDisplayName>
+   ::
 
-        <Logo>Assets\StoreLogo.png</Logo>
+       <m2:VisualElements DisplayName="Brave Frontier"
 
-    </Properties>
+6. Save and close the file.
 
-If you want to modify the name of the application that you will see in the Windows start menu, modify this `DisplayName` tag:
+Next, pack and sign the modified client with these commands:
 
-    <m2:VisualElements DisplayName="Brave Frontier" 
-
-Save and close this file, then run the following commands to pack and sign the modified client:
+::
 
     makeappx pack /d BraveFrontierAppxClient /p BraveFrontierPatched.appx
-
     SignTool sign /a /v /fd SHA256 /f MyKey.pfx /p "<Your Password>" BraveFrontierPatched.appx
 
 .. note::
 
-    Replace <Your Password> with the password used before for exporting the certificate
+   Replace ``<Your Password>`` with the password used when exporting the certificate.
 
-Running the game
--------------------------
+Running the Game
+----------------
 
-Install the newly generated file `BraveFrontierPatched.appx`` and run the client, if you have done
-all the steps correctly, a console should spawn alongside the game client like so:
+Install the newly generated ``BraveFrontierPatched.appx`` file and launch the client. If all steps were followed correctly, a console window should appear alongside the game client, as shown below:
 
 .. image::
     ../../images/bf_appx_patched.png
 
-.. failure ::
+.. warning::
 
-    If you don't see a console opening, it means that you have either not installed the patched `libcurl.dll` or
-    you have generated the `deploy` preset, which is not supported in this build.
+   If no console appears, check the following:
+   - Ensure the patched ``libcurl.dll`` was correctly installed.
+   - Verify you did not use the ``deploy`` preset, as it is not supported in this build.
+   - Confirm Developer Mode is enabled on your Windows PC.
 
-    You will also not see the console opening if you haven't enabled Developer mode on your Windows PC.
+Connecting to the Server
+~~~~~~~~~~~~~~~~~~~~~~~~
 
-Connecting to the server
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Due to a default limitation in UWP apps, they cannot communicate with localhost, preventing the game from connecting to the server. To resolve this:
 
-A default limitation in UWP apps won't allow UWP apps to communicate to localhost resulting in the game
-never connecting to the server.
-
-You can solve this by downloading the `Enable Loopback Utility <https://telerik-fiddler.s3.amazonaws.com/fiddler/addons/enableloopbackutility.exe>`_ ,
-select the Brave Frontier application.
-
-The utility should be configured like so, remember to press `Save Changes` and restart the game.
+1. Download the `Enable Loopback Utility <https://telerik-fiddler.s3.amazonaws.com/fiddler/addons/enableloopbackutility.exe>`_.
+2. Run the utility and select the Brave Frontier application.
+3. Configure it as shown below, then click ``Save Changes`` and restart the game:
 
 .. image::
     ../../images/loopback_win.png
 
-If you have started the game server, you should see Brave Frontier welcoming you to the login screen.
+If the game server is running, you should now see the Brave Frontier login screen upon launching the game.
