@@ -41,9 +41,15 @@ development start that you should run and debug to develop new functionalities.
 
 Download the assets `21900.zip <https://drive.google.com/file/d/1ApVcJISPovYuWEidnkkTJi_NI8sD1Xmx/view>`_  to your `server repository/deploy/system/game_server` (if the folder does not exist create it)
 
-Extract . . . . 
+Extract `assets.zip` from the `21900.zip` like so:
 
-You should have two folders called `content` and `mst` inside the `game_server` folder, like so:
+.. image:: ../../images/archive_21900.png
+
+Open `assets.zip` and inside, extract the two folders (`content` and `mst`) inside the `deploy/game_content`:
+
+.. image:: ../../images/assets_zip.png
+
+You should have two folders called `content` and `mst` inside the `game_content` folder, like so:
 
 .. image:: ../../images/servercontent_root.png
 
