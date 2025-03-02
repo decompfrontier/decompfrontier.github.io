@@ -17,8 +17,9 @@ administration stuff.
 
 .. toctree::
     :caption: Development setup
-    :name: toc-tut-all
+    :name: toc-dev-all
     :maxdepth: 1
 
     dev-client-winrt
     dev-server
+    writing-a-new-packet

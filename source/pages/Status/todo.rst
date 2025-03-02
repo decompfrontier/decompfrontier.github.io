@@ -7,7 +7,7 @@ What's missing for a possible release of the offline mod? (The order doesn't mea
 Code
 -----------------------------
 
-.. task-list ::
+.. task-list::
     :custom:
 
     + [ ] Is it really a good architecture? I'm afraid there's a lot more that can be borrowed as a lession from Spring/ASP.NET
@@ -19,7 +19,7 @@ Code
 Unit managment
 -----------------------------
 
-.. task-list ::
+.. task-list::
     :custom:
 
     + [  ] Decode the MST properly and read it, store it somewhere (probably a local cache like SQL?)
@@ -39,7 +39,7 @@ Unit managment
 Items
 -----------------------------
 
-.. task-list ::
+.. task-list::
     :custom:
 
     + [  ] Decode the MST properly and read it
@@ -50,7 +50,7 @@ Items
 Town
 -----------------------------
 
-.. task-list ::
+.. task-list::
     :custom:
 
     + [  ] Properly make/parse all the town levelup info
@@ -64,7 +64,7 @@ Town
 Quests
 -----------------------------
 
-.. task-list ::
+.. task-list::
     :custom:
 
     + [  ] Properly decide a format for all missions and stuff ( https://github.com/cheahjs/bravefrontier_data/tree/master/missions_parsed can help? )
@@ -76,7 +76,7 @@ Quests
 General
 -----------------------------
 
-.. task-list ::
+.. task-list::
     :custom:
 
     + [  ] Decode a lot of unknown stuff in the user information
@@ -89,7 +89,7 @@ General
 Website
 -----------------------------
 
-.. task-list ::
+.. task-list::
     :custom:
 
     + [  ] Document the currently written MSTs/responses from the client decomp
@@ -100,7 +100,7 @@ Website
 Social
 -----------------------------
 
-.. task-list ::
+.. task-list::
     :custom:
 
     + [  ] Gift receive
@@ -110,7 +110,7 @@ Social
 General QoL (not priorities but can definitly help people to discover and document)
 ---------------------------------------------------------------------------------------
 
-.. task-list ::
+.. task-list::
     :custom:
 
     + [  ] Minimal (?) HTML Admin tool to modify all the parameters of unit/unitteam/player
@@ -119,7 +119,7 @@ General QoL (not priorities but can definitly help people to discover and docume
 To define/think about them
 -----------------------------
 
-.. task-list ::
+.. task-list::
     :custom:
 
     + [  ] Social features (friends, arena, colosseum should be done?)
