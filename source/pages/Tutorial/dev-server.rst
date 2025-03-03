@@ -1,41 +1,114 @@
 Setting Up a Development Game Server
-====================================
+======================================
 
-Requirements
-------------
+This guide walks you through the chronological steps to set up a development environment for the Brave Frontier emulator server, ensuring all prerequisites are met and potential issues are avoided from the start.
 
-* A C++17 or later compiler (e.g., Visual Studio or GCC)
-* CMake
-* vcpkg
-* Git
-* A method to launch the game client (see supported methods below)
+Installing Visual Studio 2022 Community with C++ for Developers
+-----------------------------------------------------------------
 
-Cloning the Repository
-----------------------
+Before cloning the server repository or setting up dependencies, install Visual Studio 2022 Community with the necessary C++ development tools to prevent common build errors, such as the ``missing `rc.exe``` issue.
 
-To clone the server repository, run the following command:
+**Steps**:
 
-    ``git clone --depth=1 https://github.com/decompfrontier/server``
+1. Download and install Visual Studio 2022 Community from `https://visualstudio.microsoft.com/downloads/`. (For best results, run the installer with Admin Privileges)
+
+2. During installation, select the following in the Visual Studio Installer:
+
+   - **Workload**: "Desktop development with C++" (ensure this is checked).
+
+   - **Individual Components** (under "Installation details"):
+
+     - "Windows 10 SDK" (select the latest version, e.g., 10.0.22621.0).
+
+     - "MSVC v143 - VS 2022 C++ x64/x86 build tools." (Usually selected by default)
+
+   .. image:: ../../images/VisualStudio2022COptions.png
+
+3. Click "Install while downloading" or "Modify" to apply changes (approximately 10.7 GB of additional space may be required).
+
+.. note::
+    To verify all files are installed correctly, you can modify your Visual Studio installation at any time using the Visual Studio Installer. Open the installer, select "Modify" for Visual Studio 2022 Community, and ensure the above components are checked. This step can help confirm the presence of critical tools like ``rc.exe``, which is necessary for building C++ projects.
+
+Cloning the Server Repository
+------------------------------
+
+Clone the server repository to begin working on the Brave Frontier emulator server.
+
+**Steps**:
+
+To clone the server repository, run the following command in a terminal (e.g., Git Bash, Command Prompt, or PowerShell):
+::
+    git clone --depth=1 https://github.com/decompfrontier/server
+
+
+.. note::
+    Ensure Git is installed on your system (a base installation is all you need).
 
 Setting Up vcpkg
 ----------------
 
-Clone the `vcpkg repository <https://github.com/microsoft/vcpkg>`_ and bootstrap vcpkg with metrics disabled:
+Set up `vcpkg`, a C++ library manager, to handle dependencies for the server project.
 
-    ``bootstrap-vcpkg -disableMetrics``
+**Steps**:
+
+1. Clone the `vcpkg` repository and bootstrap it with metrics disabled:
+
+   - In a terminal, run:
+     ::
+         git clone https://github.com/microsoft/vcpkg.git
+         cd vcpkg
+         .\bootstrap-vcpkg -disableMetrics  (for Windows, PowerShell)
+         ./bootstrap-vcpkg.sh -disableMetrics  (for Linux/macOS)
+
 
 .. admonition:: Windows-Only Extra Steps
 
-    On Windows, open an elevated Command Prompt and run the following command in your vcpkg directory:
+    On Windows, open an elevated PowerShell (Run as Administrator) and run the following command in your `vcpkg` directory:
+    ::
+        .\vcpkg integrate install
 
-    ``vcpkg integrate install``
 
-Next, set up a system or user environment variable named ``VCPKG_ROOT`` pointing to your vcpkg installation directory.
+2. Set up a system or user environment variable named ``VCPKG_ROOT`` pointing to your `vcpkg` installation directory:
 
-Setting Up the Server
----------------------
+   - In an admin PowerShell, run:
+     ::
+         $env:VCPKG_ROOT = "C:\Projects\vcpkg"
 
-Using CMake, select the preset ``Development config for XXXXX (64-bit)`` based on your operating system. Alternatively, use one of these commands:
+
+   - Replace ``C:\Projects\vcpkg`` with the actual path to your `vcpkg` folder (e.g., ``A:\BF\vcpkg`` if that’s where it’s located).
+
+   - Test that it worked:
+     ::
+         $env:VCPKG_ROOT
+        
+    Example Output: ``C:\Projects\vcpkg``
+
+
+.. warning::
+    This is a temporary path set in PowerShell. Keep the admin console open until the end of this tutorial, or set it permanently [not recommended] (see below for instructions on making it permanent via the GUI or PowerShell).
+
+.. important::
+    To make `VCPKG_ROOT` permanent:
+    - Open `sysdm.cpl` (via `Windows Key + R`), go to “Advanced” > “Environment Variables.”
+    - Under “User variables” (or “System variables” if needed), click “New”:
+
+      - Variable name: ``VCPKG_ROOT``
+
+      - Variable value: Your `vcpkg` path (e.g., ``C:\Projects\vcpkg``).
+
+    - Alternatively, use PowerShell (user-level):
+      ::
+          [Environment]::SetEnvironmentVariable("VCPKG_ROOT", "C:\Projects\vcpkg", "User")
+
+
+Building the Server Using CMake
+-------------------------------
+
+Configure and build the server project using CMake with a preset for your operating system.
+
+**Steps**:
+
+Using CMake, select the preset ``Development config for XXXXX (64-bit)`` based on your operating system. Alternatively, use one of these commands in a terminal (e.g., Developer PowerShell for VS 2022 on Windows):
 
 - ``cmake --preset debug-win64`` (Windows)
 
@@ -43,30 +116,69 @@ Using CMake, select the preset ``Development config for XXXXX (64-bit)`` based o
 
 - ``cmake --preset debug-osx64`` (macOS)
 
-Configure and generate the target project. After building, you’ll get a binary named ``gimuserverw``. This is your development server executable, which you can run and debug to implement new features.
+.. warning::
+    If you encounter an error (e.g., "The C++ compiler is not able to compile a simple test program" or a missing `rc.exe` issue), you may be missing critical components in your Visual Studio installation. To resolve this, uninstall all Visual Studio components, then return to the "Installing Visual Studio 2022 Community with C++ for Developers" section and reinstall from scratch, ensuring all required workloads and components (e.g., Windows 10 SDK, MSVC v143) are selected.
 
-Download the assets from `21900.zip <https://drive.google.com/file/d/1ApVcJISPovYuWEidnkkTJi_NI8sD1Xmx/view>`_ and place them in the ``server repository/deploy/system/game_server`` directory. If this folder doesn’t exist, create it.
 
-Extract ``assets.zip`` from ``21900.zip`` as shown below:
+Once built, you’ll find a binary named ``gimuserverw`` in the ``server\standalone_frontend`` folder. This is your development server executable, which you can run and debug to implement new features.
 
-.. image:: ../../images/archive_21900.png
+.. hint::
+    At this point, if there are no errors in the console, you are free to close the admin PowerShell (and remove VCPKG_ROOT from root)
 
-Open ``assets.zip`` and extract the ``content`` and ``mst`` folders into ``deploy/game_content``:
+Double Click ``gimuserverw.vcxproj`` to open Visual Studio 2022 Community.
 
-.. image:: ../../images/assets_zip.png
+In Visual Studio 2022 Community, right click ``gimuserverw`` in the Solution Explorer pane and select ``Set as Startup Project``.
 
-After extraction, you should have two folders, ``content`` and ``mst``, inside ``game_content``:
+   .. image:: ../../images/SettingUpTheServer1.png
 
-.. image:: ../../images/servercontent_root.png
+From here, select the ``Debug`` dropdown menu in the top ribbon. Select ``gimuserverw Debug Properties`` at the bottom of the dropdown.
 
-The ``content`` folder should contain the following assets:
+   .. image:: ../../images/SettingUpTheServer2.png
 
-.. image:: ../../images/servercontent_content.png
+In this pop-up window, select ``Debugging`` under ``Configuration Properties``, Change ``Configuration:`` dropdown to ``All Configurations``, then change ``Working Directory`` to the ``server\deploy`` folder. Click ``OK`` to close this window, then click ``Apply`` and finally ``OK`` to return to Visual Studio 2022 Community.
 
-The ``mst`` folder should contain these assets:
+   .. image:: ../../images/SettingUpTheServer3.png
 
-.. image:: ../../images/servercontent_mst.png
+   .. image:: ../../images/SettingUpTheServer4.png
 
-To modify the server configuration, edit the JSON files in the ``system`` directory. You can also adjust additional settings in ``gimuconfig.json`` and tweak Drogon-specific options in ``config.json``.
+Final Stretch
+-------------
 
-Your environment is now ready for developing the Brave Frontier emulator!
+Complete the server setup by downloading and organizing assets.
+
+**Steps**:
+
+1. Download the assets from `21900.zip <https://drive.google.com/file/d/1ApVcJISPovYuWEidnkkTJi_NI8sD1Xmx/view>`_ and place them in the ``server\deploy\system\game_server`` directory. If this folder doesn’t exist, create it.
+
+2. Extract ``assets.zip`` from ``21900.zip`` as shown below:
+
+   .. image:: ../../images/archive_21900.png
+
+3. Open ``assets.zip`` and extract the ``content`` and ``mst`` folders into ``deploy/game_content``:
+
+   .. image:: ../../images/assets_zip.png
+
+   After extraction, you should have two folders, ``content`` and ``mst``, inside ``game_content``:
+
+   .. image:: ../../images/servercontent_root.png
+
+   The ``content`` folder should contain the following assets:
+
+   .. image:: ../../images/servercontent_content.png
+
+   The ``mst`` folder should contain these assets:
+
+   .. image:: ../../images/servercontent_mst.png
+
+4. Modify the server configuration by editing the JSON files in the ``system`` directory. You can also adjust additional settings in ``gimuconfig.json`` and tweak Drogon-specific options in ``config.json``.
+
+Your environment is now fully set up and ready for developing the Brave Frontier emulator. You can run the server by clicking the ``Green Filled-in Play Button`` at the top of Visual Studio 2022 Community.
+
+What's next?
+--------------
+
+.. important::
+    Now that you are done with the server set-up, please make your way over to game client set-up for installation steps.
+
+.. note::
+    If you encountered an error in set-up or a bug is preventing you from progressing in one of these tutorials, please create an ``Issue`` on the main repo. Thanks for your interest in our project!
