@@ -4,9 +4,9 @@ Setting Up a Development Game Server
 This guide walks you through the chronological steps to set up a development environment for the Brave Frontier emulator server, ensuring all prerequisites are met and potential issues are avoided from the start.
 
 Installing Visual Studio 2022 Community with C++ for Developers
------------------------------------------------------------------
+----------------------------------------------------------------
 
-Before cloning the server repository or setting up dependencies, install Visual Studio 2022 Community with the necessary C++ development tools to prevent common build errors, such as the ``missing `rc.exe``` issue.
+Before cloning the server repository or setting up dependencies, install Visual Studio 2022 Community with the necessary C++ development tools to prevent common build errors, such as the ``missing rc.exe`` issue.
 
 **Steps**:
 
@@ -15,11 +15,9 @@ Before cloning the server repository or setting up dependencies, install Visual 
 2. During installation, select the following in the Visual Studio Installer:
 
    - **Workload**: "Desktop development with C++" (ensure this is checked).
-
    - **Individual Components** (under "Installation details"):
 
      - "Windows 10 SDK" (select the latest version, e.g., 10.0.22621.0).
-
      - "MSVC v143 - VS 2022 C++ x64/x86 build tools." (Usually selected by default)
 
    .. image:: ../../images/VisualStudio2022COptions.png
@@ -27,7 +25,7 @@ Before cloning the server repository or setting up dependencies, install Visual 
 3. Click "Install while downloading" or "Modify" to apply changes (approximately 10.7 GB of additional space may be required).
 
 .. note::
-    To verify all files are installed correctly, you can modify your Visual Studio installation at any time using the Visual Studio Installer. Open the installer, select "Modify" for Visual Studio 2022 Community, and ensure the above components are checked. This step can help confirm the presence of critical tools like ``rc.exe``, which is necessary for building C++ projects.
+   To verify all files are installed correctly, you can modify your Visual Studio installation at any time using the Visual Studio Installer. Open the installer, select "Modify" for Visual Studio 2022 Community, and ensure the above components are checked. This step can help confirm the presence of critical tools like ``rc.exe``, which is necessary for building C++ projects.
 
 Cloning the Server Repository
 ------------------------------
@@ -37,15 +35,16 @@ Clone the server repository to begin working on the Brave Frontier emulator serv
 **Steps**:
 
 To clone the server repository, run the following command in a terminal (e.g., Git Bash, Command Prompt, or PowerShell):
-::
-    git clone --depth=1 https://github.com/decompfrontier/server
 
+::
+
+   git clone --depth=1 https://github.com/decompfrontier/server
 
 .. note::
-    Ensure Git is installed on your system (a base installation is all you need).
+   Ensure Git is installed on your system (a base installation is all you need).
 
 Setting Up vcpkg
-----------------
+-----------------
 
 Set up `vcpkg`, a C++ library manager, to handle dependencies for the server project.
 
@@ -54,55 +53,56 @@ Set up `vcpkg`, a C++ library manager, to handle dependencies for the server pro
 1. Clone the `vcpkg` repository and bootstrap it with metrics disabled:
 
    - In a terminal, run:
-     ::
-         git clone https://github.com/microsoft/vcpkg.git
-         cd vcpkg
-         .\bootstrap-vcpkg -disableMetrics  (for Windows, PowerShell)
-         ./bootstrap-vcpkg.sh -disableMetrics  (for Linux/macOS)
 
+     ::
+
+        git clone https://github.com/microsoft/vcpkg.git
+        cd vcpkg
+        .\bootstrap-vcpkg -disableMetrics  (for Windows, PowerShell)
+        ./bootstrap-vcpkg.sh -disableMetrics  (for Linux/macOS)
 
 .. admonition:: Windows-Only Extra Steps
 
-    On Windows, open an elevated PowerShell (Run as Administrator) and run the following command in your `vcpkg` directory:
-    ::
-        .\vcpkg integrate install
+   On Windows, open an elevated PowerShell (Run as Administrator) and run the following command in your `vcpkg` directory:
 
+   ::
 
-2. Set up a system or user environment variable named ``VCPKG_ROOT`` pointing to your `vcpkg` installation directory:
+      .\vcpkg integrate install
 
-   - In an admin PowerShell, run:
+2. Set up a permanent environment variable named ``VCPKG_ROOT`` pointing to your `vcpkg` installation directory. Choose one of the following methods based on your preference:
+
+   - **User-Level (Recommended)**: Sets the variable for your user account only. In a PowerShell terminal, run:
+
      ::
-         $env:VCPKG_ROOT = "C:\Projects\vcpkg"
 
+        [Environment]::SetEnvironmentVariable("VCPKG_ROOT", "C:\Projects\vcpkg", "User")
+
+   - **System-Level (Admin Required)**: Sets the variable for all users on the system. In an elevated PowerShell (Run as Administrator), run:
+
+     ::
+
+        [Environment]::SetEnvironmentVariable("VCPKG_ROOT", "C:\Projects\vcpkg", "Machine")
 
    - Replace ``C:\Projects\vcpkg`` with the actual path to your `vcpkg` folder (e.g., ``A:\BF\vcpkg`` if that’s where it’s located).
+   - To verify it worked, restart your terminal and run:
 
-   - Test that it worked:
      ::
-         $env:VCPKG_ROOT
-        
-    Example Output: ``C:\Projects\vcpkg``
 
+        $env:VCPKG_ROOT
 
-.. warning::
-    This is a temporary path set in PowerShell. Keep the admin console open until the end of this tutorial, or set it permanently [not recommended] (see below for instructions on making it permanent via the GUI or PowerShell).
+     Example Output: ``C:\Projects\vcpkg``
+
+   - Alternatively, set it via the GUI:
+     - Open `sysdm.cpl` (via `Windows Key + R`), go to “Advanced” > “Environment Variables.”
+     - Under “User variables” (for user-level) or “System variables” (for system-level, admin required), click “New”:
+       - Variable name: ``VCPKG_ROOT``
+       - Variable value: Your `vcpkg` path (e.g., ``C:\Projects\vcpkg``).
 
 .. important::
-    To make `VCPKG_ROOT` permanent:
-    - Open `sysdm.cpl` (via `Windows Key + R`), go to “Advanced” > “Environment Variables.”
-    - Under “User variables” (or “System variables” if needed), click “New”:
-
-      - Variable name: ``VCPKG_ROOT``
-
-      - Variable value: Your `vcpkg` path (e.g., ``C:\Projects\vcpkg``).
-
-    - Alternatively, use PowerShell (user-level):
-      ::
-          [Environment]::SetEnvironmentVariable("VCPKG_ROOT", "C:\Projects\vcpkg", "User")
-
+   Setting ``VCPKG_ROOT`` permanently is required for this and subsequent tutorials. Ensure you choose the method (user-level or system-level) that best suits your setup to avoid issues later.
 
 Building the Server Using CMake
--------------------------------
+--------------------------------
 
 Configure and build the server project using CMake with a preset for your operating system.
 
@@ -111,38 +111,35 @@ Configure and build the server project using CMake with a preset for your operat
 Using CMake, select the preset ``Development config for XXXXX (64-bit)`` based on your operating system. Alternatively, use one of these commands in a terminal (e.g., Developer PowerShell for VS 2022 on Windows):
 
 - ``cmake --preset debug-win64`` (Windows)
-
 - ``cmake --preset debug-lnx64`` (Linux)
-
 - ``cmake --preset debug-osx64`` (macOS)
 
 .. warning::
-    If you encounter an error (e.g., "The C++ compiler is not able to compile a simple test program" or a missing `rc.exe` issue), you may be missing critical components in your Visual Studio installation. To resolve this, uninstall all Visual Studio components, then return to the "Installing Visual Studio 2022 Community with C++ for Developers" section and reinstall from scratch, ensuring all required workloads and components (e.g., Windows 10 SDK, MSVC v143) are selected.
-
+   If you encounter an error (e.g., "The C++ compiler is not able to compile a simple test program" or a missing `rc.exe` issue), you may be missing critical components in your Visual Studio installation. To resolve this, uninstall all Visual Studio components, then return to the "Installing Visual Studio 2022 Community with C++ for Developers" section and reinstall from scratch, ensuring all required workloads and components (e.g., Windows 10 SDK, MSVC v143) are selected.
 
 Once built, you’ll find a binary named ``gimuserverw`` in the ``server\standalone_frontend`` folder. This is your development server executable, which you can run and debug to implement new features.
 
 .. hint::
-    At this point, if there are no errors in the console, you are free to close the admin PowerShell (and remove VCPKG_ROOT from root)
+   At this point, if there are no errors in the console, you are free to close the admin PowerShell (and remove VCPKG_ROOT from root)
 
 Double Click ``gimuserverw.vcxproj`` to open Visual Studio 2022 Community.
 
 In Visual Studio 2022 Community, right click ``gimuserverw`` in the Solution Explorer pane and select ``Set as Startup Project``.
 
-   .. image:: ../../images/SettingUpTheServer1.png
+.. image:: ../../images/SettingUpTheServer1.png
 
 From here, select the ``Debug`` dropdown menu in the top ribbon. Select ``gimuserverw Debug Properties`` at the bottom of the dropdown.
 
-   .. image:: ../../images/SettingUpTheServer2.png
+.. image:: ../../images/SettingUpTheServer2.png
 
 In this pop-up window, select ``Debugging`` under ``Configuration Properties``, Change ``Configuration:`` dropdown to ``All Configurations``, then change ``Working Directory`` to the ``server\deploy`` folder. Click ``OK`` to close this window, then click ``Apply`` and finally ``OK`` to return to Visual Studio 2022 Community.
 
-   .. image:: ../../images/SettingUpTheServer3.png
+.. image:: ../../images/SettingUpTheServer3.png
 
-   .. image:: ../../images/SettingUpTheServer4.png
+.. image:: ../../images/SettingUpTheServer4.png
 
 Final Stretch
--------------
+--------------
 
 Complete the server setup by downloading and organizing assets.
 
@@ -175,10 +172,10 @@ Complete the server setup by downloading and organizing assets.
 Your environment is now fully set up and ready for developing the Brave Frontier emulator. You can run the server by clicking the ``Green Filled-in Play Button`` at the top of Visual Studio 2022 Community.
 
 What's next?
---------------
+-------------
 
 .. important::
-    Now that you are done with the server set-up, please make your way over to game client set-up for installation steps.
+   Now that you are done with the server set-up, please make your way over to game client set-up for installation steps.
 
 .. note::
-    If you encountered an error in set-up or a bug is preventing you from progressing in one of these tutorials, please create an ``Issue`` on the main repo. Thanks for your interest in our project!
+   If you encountered an error in set-up or a bug is preventing you from progressing in one of these tutorials, please create an ``Issue`` on the main repo. Thanks for your interest in our project!
