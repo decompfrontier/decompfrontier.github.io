@@ -15,3 +15,4 @@ This page shows the current status of the server and client project.
 
     todo
     decomp-status
+    missing-asset
