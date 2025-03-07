@@ -107,7 +107,7 @@ To unpack the game client, run the following command:
 
 A new folder named ``BraveFrontierAppxClient`` will be created, containing the extracted game client files for modification.
 
-1. Copy the ``libcurl.dll`` file from the "Building the Proxy" section and place it in the root of the ``BraveFrontierAppxClient`` directory. When prompted to replace the original file, select ``Yes``.
+1. Copy the ``libcurl.dll`` file from the "`Building the Proxy <https://github.com/decompfrontier/offline-proxy>`_" section and place it in the root of the ``BraveFrontierAppxClient`` directory. When prompted to replace the original file, select ``Yes``.
 2. Delete the following files from the ``BraveFrontierAppxClient`` directory:
 
    - ``AppxMetadata``
