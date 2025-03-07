@@ -147,13 +147,13 @@ Complete the server setup by downloading and organizing assets.
 
 **Steps**:
 
-1. Download the assets from `21900.zip <https://drive.google.com/file/d/1ApVcJISPovYuWEidnkkTJi_NI8sD1Xmx/view>`_ and place them in the ``server\deploy\system\game_server`` directory. If this folder doesn’t exist, create it.
+1. Download the assets from `21900.zip <https://drive.google.com/file/d/1ApVcJISPovYuWEidnkkTJi_NI8sD1Xmx/view>`_.
 
 2. Extract ``assets.zip`` from ``21900.zip`` as shown below:
 
    .. image:: ../../images/archive_21900.png
 
-3. Open ``assets.zip`` and extract the ``content`` and ``mst`` folders into ``deploy/game_content``:
+3. Open ``assets.zip`` and extract the ``content`` and ``mst`` folders into ``deploy/game_content`` (if this folder doesn't exist make it):
 
    .. image:: ../../images/assets_zip.png
 
