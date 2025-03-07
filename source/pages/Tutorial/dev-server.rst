@@ -93,8 +93,10 @@ Set up `vcpkg`, a C++ library manager, to handle dependencies for the server pro
      Example Output: ``C:\Projects\vcpkg``
 
    - Alternatively, set it via the GUI:
+
      - Open `sysdm.cpl` (via `Windows Key + R`), go to “Advanced” > “Environment Variables.”
      - Under “User variables” (for user-level) or “System variables” (for system-level, admin required), click “New”:
+
        - Variable name: ``VCPKG_ROOT``
        - Variable value: Your `vcpkg` path (e.g., ``C:\Projects\vcpkg``).
 
