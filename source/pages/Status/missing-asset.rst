@@ -1,8 +1,6 @@
 Missing assets
 =================
 
-
-
 This page tracks all the graphical assets that existed in Brave Frontier that are currently not available in the assset drive.
 
 .. important::
@@ -337,6 +335,7 @@ This page tracks all the graphical assets that existed in Brave Frontier that ar
 * ~~/content/gacha/gacha_img_20191204SCS_s1.png~~
 * ~~/content/gacha/gacha_img_20191205NR_10G.png~~
 * ~~/content/gacha/gacha_img_20191211DS.png~~
+* /content/gacha/gacha_img_20191211S_5G.png
 * ~~/content/gacha/gacha_img_20191211S_s1.png~~
 * /content/gacha/gacha_img_20191218DS.png
 * /content/gacha/gacha_img_20191218RG_s1.png
