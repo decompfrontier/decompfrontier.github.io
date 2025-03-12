@@ -13,3 +13,4 @@ you would find how several things were designed in this page.
 
     General-architecture
     Offlinemod-architecture
+    Emulator-architecture

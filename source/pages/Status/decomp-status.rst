@@ -1,15 +1,67 @@
 Client decompilation status
 =================================
 
-List of currently decompiled classes:
+The Android client contains two separates parts of the game client, one being the C++ game library which contains the
+actual game logic and the engine code (Cocos2d-x), and another one which contains the Java code necessary to launch
+the game and perform integrations with Android or Google API.
+
+* Game executable
+    
+    * ✔️ Main Android Java entrypoint
+    * ❌ Main iOS Objective-C entrypoint
+    * ❌ Main Windows RT C++ entrypoint
+    
+    * Main game library
+
+        * ❌ Game client code
+        * Statically linked libraries
+
+            * ❌ Cocos2d-x (partially found but there might be changes)
+            * ❌ zlib
+            * ❌ OpenSSL
+            * ❌ curl
+            * ❌ rapidjson
+            * ❌ Other statically linked libraries
+            * ❌ Android NDK C++ library
+
+    * ❌ Dynamically linked libraries
+
+
+Android Java decompilation status
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The java part is 100% decompiled, there might be some improvements in code readability for better understanding the BraveFrontierJNI class,
+but it does build and run properly with IntelliJ/Android Studio.
+
+iOS Objective C decompilation status
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Currently no decompilation was started for the iOS entrypoint as the main focus of the decompilation is the Android client.
+
+Feel free to send a PR if interested.
+
+WindowsRT C++ decompilation status
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Currently no decompilation was started for the iOS entrypoint as the main focus of the decompilation is the Android client, this
+build (BraveFrontier.exe) also lacks debugging symbols.
+
+Feel free to send a PR if interested.
+
+
+Game client C++ decompilation status
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+It's currently incomplete and might not work entirely, below is a list of currently
+decompiled and adjusted Brave Frontier classes:
 
 .. task-list::
     :custom:
 
-    + [x] AIMst
-    + [x] AIMstList
+    + [ ] AIMst
+    + [ ] AIMstList
     + [ ] AIMstResponse
-    + [x] AITerm
+    + [ ] AITerm
     + [ ] AccelerometerManager
     + [ ] AchievementAcceptRequest
     + [ ] AchievementBadgeInfo
@@ -127,7 +179,7 @@ List of currently decompiled classes:
     + [ ] AutobattleSettingsLabelsScrlObject
     + [ ] AutobattleSettingsOrderScene
     + [ ] AutobattleSettingsScene
-    + [x] BFCertificateProvider
+    + [ ] BFCertificateProvider
     + [ ] BadStateDescList
     + [ ] BadgeInfo
     + [ ] BadgeInfoRequest
@@ -142,7 +194,7 @@ List of currently decompiled classes:
     + [ ] BannerTopScene
     + [ ] BasePartyInfoList
     + [ ] BaseRequest
-    + [x] BaseResponse
+    + [ ] BaseResponse
     + [ ] BaseScene
     + [ ] BatchNodeCache
     + [ ] BattleActionStatus
@@ -237,7 +289,7 @@ List of currently decompiled classes:
     + [ ] BindFBScene
     + [ ] BitmapLabel
     + [ ] BitmapLabelEx
-    + [x] BodyResponse
+    + [ ] BodyResponse
     + [ ] BossMonsterInfo
     + [ ] BuffDescList
     + [ ] BundleCategoryRefreshRequest
@@ -697,7 +749,7 @@ List of currently decompiled classes:
     + [ ] CoopRaidResultUnitScene
     + [ ] CoopRaidTopScene
     + [ ] CountData
-    + [x] CrashlyticsUtil
+    + [ ] CrashlyticsUtil
     + [ ] CreateUserRequest
     + [ ] CreditScene
     + [ ] DLCManager
@@ -729,7 +781,7 @@ List of currently decompiled classes:
     + [ ] DailyTaskMst
     + [ ] DailyTaskMstList
     + [ ] DailyTaskMstResponse
-    + [x] DailyTaskPrizeMst
+    + [ ] DailyTaskPrizeMst
     + [ ] DailyTaskPrizeMstList
     + [ ] DailyTaskPrizeMstResponse
     + [ ] DailyTaskScene
@@ -798,7 +850,7 @@ List of currently decompiled classes:
     + [ ] EffectMstResponse
     + [ ] EnemyParty
     + [ ] EnemyUnit
-    + [x] EnumString
+    + [ ] EnumString
     + [ ] Ep3StartEventScene
     + [ ] EqpItem
     + [ ] EqpSphere
@@ -893,7 +945,7 @@ List of currently decompiled classes:
     + [ ] FieldUnit
     + [ ] FileCrypt
     + [ ] FileLoader
-    + [x] FirstDescMst
+    + [ ] FirstDescMst
     + [ ] FirstDescMstList
     + [ ] FirstDescMstResponse
     + [ ] FirstDescScene
@@ -917,7 +969,7 @@ List of currently decompiled classes:
     + [ ] FriendDetailScene
     + [ ] FriendFavoriteRequest
     + [ ] FriendGetAgreeRequest
-    + [x] FriendGetRequest
+    + [ ] FriendGetRequest
     + [ ] FriendIdSearch2Scene
     + [ ] FriendIdSearchFriendRequestScene
     + [ ] FriendIdSearchScene
@@ -1070,7 +1122,7 @@ List of currently decompiled classes:
     + [ ] GetGiftInfoRequest
     + [ ] GetPlayerInfoRequest
     + [ ] GetScenarioPlayingInfoRequest
-    + [x] GetUserInfoRequest
+    + [ ] GetUserInfoRequest
     + [ ] GiftItemMst
     + [ ] GiftItemMstList
     + [ ] GiftItemMstResponse
@@ -1531,10 +1583,10 @@ List of currently decompiled classes:
     + [ ] ItemThumbnailManager
     + [ ] ItemTopScene
     + [ ] ItemUseTimeLimitRequest
-    + [x] Json
-    + [x] JsonGroup
-    + [x] JsonNode
-    + [x] JsonParam
+    + [ ] Json
+    + [ ] JsonGroup
+    + [ ] JsonNode
+    + [ ] JsonParam
     + [ ] JsonUtils
     + [ ] KLMVideoCapture
     + [ ] KLRInterface
@@ -1817,7 +1869,7 @@ List of currently decompiled classes:
     + [ ] NoticeDetailScene
     + [ ] NoticeInfo
     + [ ] NoticeInfoResponse
-    + [x] NoticeListMst
+    + [ ] NoticeListMst
     + [ ] NoticeListMstList
     + [ ] NoticeListMstResponse
     + [ ] NoticeListRequest
@@ -2267,7 +2319,7 @@ List of currently decompiled classes:
     + [ ] ResourceMst
     + [ ] ResourceMstList
     + [ ] ResourceMstResponse
-    + [x] ResponseData
+    + [ ] ResponseData
     + [ ] ResultBonus
     + [ ] ResummonGachaMst
     + [ ] ResummonGachaMstList
@@ -2402,7 +2454,7 @@ List of currently decompiled classes:
     + [ ] ShopUnitBoxExtScene
     + [ ] ShopUseConnectScene
     + [ ] ShopUseRequest
-    + [x] SignalKeyResponse
+    + [ ] SignalKeyResponse
     + [ ] SimpleAudioEngineOpenSL
     + [ ] Slider
     + [ ] SlotActionRequest
@@ -2831,7 +2883,7 @@ List of currently decompiled classes:
     + [ ] UserConfigInfo
     + [ ] UserCreateResultScene
     + [ ] UserCreateScene
-    + [x] UserDebugInfo
+    + [ ] UserDebugInfo
     + [ ] UserDungeonKeyInfo
     + [ ] UserDungeonKeyInfoList
     + [ ] UserDungeonKeyInfoResponse
@@ -2854,8 +2906,8 @@ List of currently decompiled classes:
     + [ ] UserGiftInfo
     + [ ] UserGiftInfoList
     + [ ] UserGiftInfoResponse
-    + [x] UserInfo
-    + [x] UserInfoResponse
+    + [ ] UserInfo
+    + [ ] UserInfoResponse
     + [ ] UserItemDictSortInfo
     + [ ] UserItemDictionary
     + [ ] UserItemDictionaryList
@@ -2930,8 +2982,8 @@ List of currently decompiled classes:
     + [ ] UserTeamArchiveResponse
     + [ ] UserTeamArenaArchive
     + [ ] UserTeamArenaArchiveResponse
-    + [x] UserTeamInfo
-    + [x] UserTeamInfoResponse
+    + [ ] UserTeamInfo
+    + [ ] UserTeamInfoResponse
     + [ ] UserTournamentInfo
     + [ ] UserTournamentInfoList
     + [ ] UserTournamentInfoRequest
@@ -3066,11 +3118,11 @@ List of currently decompiled classes:
     + [ ] XMLFileProcessor_SG
     + [ ] XmlReader
 
-Classes to revisit
-------------------------
+C++ decompilation classes to revisit partially
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 UserInfo
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+""""""""""""""""""""""""""""""""""""""""
 - Unknown string (unk_str)
 - Unknown string (unk_str2) used in UserInfoResponse
 - 20 unknown bytes (p29)
@@ -3078,106 +3130,106 @@ UserInfo
 - 8 unknown bytes (p253)
 
 UserInfoResponse
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+""""""""""""""""""""""""""""""""""""""""
 - When unk_str2 in UserInfo is decoded, adjust this file
 - Discover and update TutoChapterID
 
 FeatureGatingHandler
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+""""""""""""""""""""""""""""""""""""""""
 - Required for UserInfoResponse
 
 UserUnitInfoList
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+""""""""""""""""""""""""""""""""""""""""
 - Required for UserInfoResponse
 
 EarlyBird
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+""""""""""""""""""""""""""""""""""""""""
 - Required for UserInfoResponse
 
 UserSpecialScenarioInfoList
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+""""""""""""""""""""""""""""""""""""""""
 - Required for UserInfoResponse
 
 UserScenarioInfoList
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+""""""""""""""""""""""""""""""""""""""""
 - Required for UserInfoResponse
 
 AppDelegate
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+""""""""""""""""""""""""""""""""""""""""
 - getFightRestTimer shoud be an enum
 - revisit applicationDidEnterBackground
 - reverse applicationDidFinishLaunching
 - discover if applicationWillTerminate is called by cocos2d runtime
 
 GuildUserGuildInfo
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+""""""""""""""""""""""""""""""""""""""""
 - Required for AppDelegate
 
 GuildContributionRestrictMst
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+""""""""""""""""""""""""""""""""""""""""
 - Required for AppDelegate
 
 ServerTimeInfo
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+""""""""""""""""""""""""""""""""""""""""
 - Required for AppDelegate
 
 SaveData
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+""""""""""""""""""""""""""""""""""""""""
 - Required everywhere, reverse
 - Convert stuff to CC_SYNTHESIZE/CC_PROPERTY
 
 GuildRaidUserInfo
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+""""""""""""""""""""""""""""""""""""""""
 - Required for AppDelegate
 
 BaseRequest
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+""""""""""""""""""""""""""""""""""""""""
 - Finish this class
 
 BaseResponse
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+""""""""""""""""""""""""""""""""""""""""
 - Finish to document the parameters
 
 BaseScene
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+""""""""""""""""""""""""""""""""""""""""
 - Start this class
 
 CommonUtils
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+""""""""""""""""""""""""""""""""""""""""
 - Adjust vftable for convertPosition
 - Finish this class
 - Implement required stuff for ios/win32
 
 DailyTaskPrizeMstList
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+""""""""""""""""""""""""""""""""""""""""
 - Finish this class
 
 DefineMst
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+""""""""""""""""""""""""""""""""""""""""
 - Convert to CC_SYNTHESIZE or CC_PROPERTY
 
 FileLoader
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+""""""""""""""""""""""""""""""""""""""""
 - Start this class
 
 FirstDescMstList
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+""""""""""""""""""""""""""""""""""""""""
 - Finish this class
 
 GameLayer
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+""""""""""""""""""""""""""""""""""""""""
 - Start this class
 
 GameScene
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+""""""""""""""""""""""""""""""""""""""""
 - Start this class
 
 GameSprite
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+""""""""""""""""""""""""""""""""""""""""
 - Start this class
 
 GumiLiveManager
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+""""""""""""""""""""""""""""""""""""""""
 - NOTE: SaveData must be reversed first
 - NOTE: NetworkManager has to be reversed first
 - Finish this class
@@ -3188,15 +3240,15 @@ GumiLiveManager
 - Unknown fields (q, unk5, unk6, unk8, unk9)
 
 GumiLiveNetworkManagement
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+""""""""""""""""""""""""""""""""""""""""
 - Finish this class (this is super boring and it's 99% just requests to NetworkManager)
 
 LocalNotificationManager
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+""""""""""""""""""""""""""""""""""""""""
 - Start this class
 
 NetworkManager
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+""""""""""""""""""""""""""""""""""""""""
 - Revising the protection of fields
 - Unknown paramets (unk2, unk)
 - Revisit the hostsUrl and verify if it's in the decomp
@@ -3206,56 +3258,56 @@ NetworkManager
 - onNetworkRequestResponse
 
 NoticeListMstList
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+""""""""""""""""""""""""""""""""""""""""
 - Start this class
 
 SaveUtils
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+""""""""""""""""""""""""""""""""""""""""
 - Finish this class
 
 ScrLayer
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+""""""""""""""""""""""""""""""""""""""""
 - Finish this class
 
 ServiceRequestManager
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+""""""""""""""""""""""""""""""""""""""""
 - Start this class
 
 StringLabel
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+""""""""""""""""""""""""""""""""""""""""
 - Start this class
 
 StringLabelList
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+""""""""""""""""""""""""""""""""""""""""
 - Start this class
 
 TextManager
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+""""""""""""""""""""""""""""""""""""""""
 - Start this class
 
 UserConfigInfo
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+""""""""""""""""""""""""""""""""""""""""
 - Convert to CC_SYNTHESIZE/CC_PROPERTY
 - Finish this class
 
 UserTeamInfo
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+""""""""""""""""""""""""""""""""""""""""
 - Convert to CC_SYNTHESIZE/CC_PROPERTY (this can be done later)
 
 Utils
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+""""""""""""""""""""""""""""""""""""""""
 - Finish this class
 - Add missing stuff for ios/windows
 
 Utils::FpsTrakcer
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+""""""""""""""""""""""""""""""""""""""""
 - Start this class
 
 Windows main
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+""""""""""""""""""""""""""""""""""""""""
 - Actually reverse the entrypoint (which we only have the one for UWP sadly)
 
 DailyTaskPrizeMstList
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+""""""""""""""""""""""""""""""""""""""""
 - ISFIRST IS NOT CORRECT!!
 - a3 and a2?
