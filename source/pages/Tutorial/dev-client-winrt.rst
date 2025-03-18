@@ -21,7 +21,7 @@ To clone the offline-proxy repository, run the following command:
 
 ::
 
-    git clone --depth=1 https://github.com/decompfrontier/offline-proxy.git
+    git clone --depth=1 https://github.com/decompfrontier/offline-proxy
 
 Building the Proxy
 ------------------
