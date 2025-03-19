@@ -20,6 +20,6 @@ administration stuff.
     :name: toc-dev-all
     :maxdepth: 1
 
-    dev-client-winrt
     dev-server
+    dev-client-winrt
     writing-a-new-packet
