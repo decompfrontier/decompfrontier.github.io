@@ -185,7 +185,7 @@ Due to a default limitation in UWP apps, they cannot communicate with localhost,
 
 .. note::
 
-   If Loopback Utility reports an error while saving changes, ensure Developer Mode is enabled, Device Portal is enabled, and the ``Restrict to loopback connections only`` option is disabled.
+   If Loopback Utility reports an error while saving changes, ensure Device Portal is enabled, and the ``Restrict to loopback connections only`` option is disabled under Developer settings.
 
 .. image::
     ../../images/loopback_win.png
