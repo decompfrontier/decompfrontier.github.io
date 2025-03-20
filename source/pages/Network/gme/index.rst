@@ -36,11 +36,6 @@ This is what a completed GME packet looks like:
         }
     }
 
-.. toctree::
-    :caption: Game Server
-    :name: toc-network-gme
-    :maxdepth: 1
-
 Understanding Game Client Requests
 -------------------------------------------
 
@@ -49,9 +44,8 @@ As you navigate around in the game, you may have came across something akin to t
 .. image::
     ../../../images/unsupported_request_YPBU7MD8.png
 
-The above screen is displayed when the server receives an unsupported request from the client. This can happen when the client
-sends a game request that the server does not recognize or support. In the above example, the client sent a game request with the ID
-``YPBU7MD8`` which the server does not have a handler for.
+This can happen when the client sends a game request that the server does not recognize or support. In the above example, 
+the client sent a game request with the ID ``YPBU7MD8`` which the server does not have a handler for.
 
 For a more concrete example, take a look at the server console to see what happens whenever the home menu button is pressed
 in the game client:
@@ -138,3 +132,8 @@ for the pressing the summon menu button in the game client. Notice that the game
 Each key of the JSON body is also hashed. In this example, ``1IR86sAv`` is the key representing gatcha information.
 ``6FrKacq7`` denotes the signal key, ``IBs49NiH`` is gatcha categories, and ``fEi17cnx`` is the user's current team information.
 The server sends these information to the client, which then updates and displays the gatcha banners accordingly.
+
+.. toctree::
+    :caption: Game Server
+    :name: toc-network-gme
+    :maxdepth: 1
