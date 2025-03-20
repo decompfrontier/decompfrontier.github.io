@@ -3,6 +3,10 @@ Missing assets
 
 This page tracks all the graphical assets that existed in Brave Frontier that are currently not available in the assset drive.
 
+.. note::
+
+    All missing files will be handled via an asset placeholder generator in the current dev build for all files still not found.
+
 .. important::
 
     The content of this page can be updated either when a volounteer has dumped the content and the drive has been updated or,
