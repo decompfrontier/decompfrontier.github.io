@@ -21,5 +21,5 @@ as well as the infrastructure for the client decompilation.
     :name: toc-dev-all
     :maxdepth: 1
 
-    dev-client-winrt
     dev-server
+    dev-client-winrt

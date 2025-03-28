@@ -8,6 +8,7 @@ Requirements
 * `Microsoft Visual C++ Runtime Package 12.0 for x86 <https://github.com/M1k3G0/Win10_LTSC_VP9_Installer/blob/master/Microsoft.VCLibs.120.00_12.0.21005.1_x86__8wekyb3d8bbwe.appx>`_
 * A copy of the Brave Frontier package (APPX) for Windows (`Share Drive link <https://drive.google.com/file/d/1NB64gzQOe-QQx9fY0mkoZiCSfe3WlTYi/view?usp=sharing>`_)
 * Developer Mode enabled on your system
+* Development game server setup and running (see `Setting Up a Development Game Server <dev-server.html>`_)
 
 .. warning::
 
@@ -16,11 +17,11 @@ Requirements
 Cloning the Repository
 ----------------------
 
-To clone the server repository, run the following command:
+To clone the offline-proxy repository, run the following command:
 
 ::
 
-    git clone --depth=1 https://github.com/decompfrontier/server
+    git clone --depth=1 https://github.com/decompfrontier/offline-proxy
 
 Building the Proxy
 ------------------
@@ -181,6 +182,10 @@ Due to a default limitation in UWP apps, they cannot communicate with localhost,
 1. Download the `Enable Loopback Utility <https://telerik-fiddler.s3.amazonaws.com/fiddler/addons/enableloopbackutility.exe>`_.
 2. Run the utility and select the Brave Frontier application.
 3. Configure it as shown below, then click ``Save Changes`` and restart the game:
+
+.. note::
+
+   If Loopback Utility reports an error while saving changes, ensure Device Portal is enabled, and the ``Restrict to loopback connections only`` option is disabled under Developer settings.
 
 .. image::
     ../../images/dev-client-winrt/loopback_win.png
