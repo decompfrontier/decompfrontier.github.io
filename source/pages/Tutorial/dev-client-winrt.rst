@@ -90,7 +90,7 @@ Installing the Certificate
 5. Click ``Finish``, then confirm with ``Yes`` when prompted.
 
 .. image::
-    ../../images/certpath_win.png
+    ../../images/dev-client-winrt/certpath_win.png
 
 Modifying Brave Frontier APPX
 -----------------------------
@@ -161,7 +161,7 @@ Running the Game
 Install the newly generated ``BraveFrontierPatched.appx`` file and launch the client. If all steps were followed correctly, a console window should appear alongside the game client, as shown below:
 
 .. image::
-    ../../images/bf_appx_patched.png
+    ../../images/dev-client-winrt/bf_appx_patched.png
 
 .. warning::
 
@@ -183,6 +183,6 @@ Due to a default limitation in UWP apps, they cannot communicate with localhost,
 3. Configure it as shown below, then click ``Save Changes`` and restart the game:
 
 .. image::
-    ../../images/loopback_win.png
+    ../../images/dev-client-winrt/loopback_win.png
 
 If the game server is running, you should now see the Brave Frontier login screen upon launching the game.

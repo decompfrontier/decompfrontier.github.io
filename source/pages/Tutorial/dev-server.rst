@@ -20,7 +20,7 @@ Before cloning the server repository or setting up dependencies, install Visual 
      - "Windows 10 SDK" (select the latest version, e.g., 10.0.22621.0).
      - "MSVC v143 - VS 2022 C++ x64/x86 build tools." (Usually selected by default)
 
-   .. image:: ../../images/VisualStudio2022COptions.png
+   .. image:: ../../images/dev-server/VisualStudio2022COptions.png
 
 3. Click "Install while downloading" or "Modify" to apply changes (approximately 10.7 GB of additional space may be required).
 
@@ -128,17 +128,17 @@ Double Click ``gimuserverw.vcxproj`` to open Visual Studio 2022 Community.
 
 In Visual Studio 2022 Community, right click ``gimuserverw`` in the Solution Explorer pane and select ``Set as Startup Project``.
 
-.. image:: ../../images/SettingUpTheServer1.png
+.. image:: ../../images/dev-server/SettingUpTheServer1.png
 
 From here, select the ``Debug`` dropdown menu in the top ribbon. Select ``gimuserverw Debug Properties`` at the bottom of the dropdown.
 
-.. image:: ../../images/SettingUpTheServer2.png
+.. image:: ../../images/dev-server/SettingUpTheServer2.png
 
 In this pop-up window, select ``Debugging`` under ``Configuration Properties``, Change ``Configuration:`` dropdown to ``All Configurations``, then change ``Working Directory`` to the ``server\deploy`` folder. Click ``OK`` to close this window, then click ``Apply`` and finally ``OK`` to return to Visual Studio 2022 Community.
 
-.. image:: ../../images/SettingUpTheServer3.png
+.. image:: ../../images/dev-server/SettingUpTheServer3.png
 
-.. image:: ../../images/SettingUpTheServer4.png
+.. image:: ../../images/dev-server/SettingUpTheServer4.png
 
 Final Stretch
 --------------
@@ -151,23 +151,23 @@ Complete the server setup by downloading and organizing assets.
 
 2. Extract ``assets.zip`` from ``21900.zip`` as shown below:
 
-   .. image:: ../../images/archive_21900.png
+   .. image:: ../../images/dev-server/archive_21900.png
 
 3. Open ``assets.zip`` and extract the ``content`` and ``mst`` folders into ``deploy/game_content`` (if this folder doesn't exist make it):
 
-   .. image:: ../../images/assets_zip.png
+   .. image:: ../../images/dev-server/assets_zip.png
 
    After extraction, you should have two folders, ``content`` and ``mst``, inside ``game_content``:
 
-   .. image:: ../../images/servercontent_root.png
+   .. image:: ../../images/dev-server/servercontent_root.png
 
    The ``content`` folder should contain the following assets:
 
-   .. image:: ../../images/servercontent_content.png
+   .. image:: ../../images/dev-server/servercontent_content.png
 
    The ``mst`` folder should contain these assets:
 
-   .. image:: ../../images/servercontent_mst.png
+   .. image:: ../../images/dev-server/servercontent_mst.png
 
 4. Modify the server configuration by editing the JSON files in the ``system`` directory. You can also adjust additional settings in ``gimuconfig.json`` and tweak Drogon-specific options in ``config.json``.
 

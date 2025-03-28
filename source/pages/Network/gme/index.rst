@@ -15,7 +15,7 @@ The flow of a gme packet works this file: (apply the opposite for reading one)
     The AES cryptation key changes based from the Game request.
 
 .. image::
-    ../../../images/gme_flow.png
+    ../../../images/gme-index/gme_flow.png
 
 1. The actual JSON packet gets created by the client
 2. The packet is crypted with AES/ECB and encoded in Base-64 with a key that changes for every request type

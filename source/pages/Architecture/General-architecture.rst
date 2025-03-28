@@ -33,7 +33,7 @@ The following picture descrives how Brave Frontier starts up in the Android code
 
 **NOTE**: You can find this code inside Classes\ for the C++ version and proj.android\src for the Java version in the Client decomp.
 
-.. image:: ../../images/androidstartup.png
+.. image:: ../../images/general-architecture/androidstartup.png
 
 1. The Android OS will start the game based from the specification of the AndroidManifest, therefore it will launch BF base class
 2. The base class with initialize itself and all the extra components like Facebook, Tapjoy, Google Play and so on
@@ -53,6 +53,6 @@ The following picture shows what happens when the game will attempt to do a Java
 
 **NOTE**: You can find the code inside the decomp, look for Utils.cpp inside Classes and BraveFrontierJNI.java for how the implementation was done.
 
-.. image:: ../../images/javainterop.png
+.. image:: ../../images/general-architecture/javainterop.png
 
 Cocos2d-x provides utilities functions to simplify the work of interopratibility, this code is only present in the Android version of the game.
