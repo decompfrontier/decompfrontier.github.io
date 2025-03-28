@@ -7,7 +7,7 @@ the game and perform integrations with Android or Google API.
 
 * Game executable
     
-    * ✔️ Main Android Java entrypoint
+    * ✔️ Main Android Java entrypoint (3rd party libraries might not match)
     * ❌ Main iOS Objective-C entrypoint
     * ❌ Main Windows RT C++ entrypoint
     
@@ -15,16 +15,20 @@ the game and perform integrations with Android or Google API.
 
         * ❌ Game client code
         * Statically linked libraries
-
-            * ❌ Cocos2d-x (partially found but there might be changes)
-            * ❌ zlib
-            * ❌ OpenSSL
-            * ❌ curl
+            * ✔️ Android NDK libraries (found the exact compiler used)
+            * ❌ Cocos2d-x (base version found but there might be changes)
+            * ✔️ curl
+            * ❌ libpng
+            * ❌ libtiff 
+            * ❌ libxml2 (original commit found, might not match our compiler)
+            * ✔️ OpenSSL
             * ❌ rapidjson
-            * ❌ Other statically linked libraries
-            * ❌ Android NDK C++ library
+            * ❌ zlib
 
-    * ❌ Dynamically linked libraries
+* Dynamically linked libraries for Android
+
+    * ✔️ libc++_shared.so
+    * ❌ libcrashlytics.so
 
 
 Android Java decompilation status
