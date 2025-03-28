@@ -42,7 +42,7 @@ Understanding Game Client Requests
 As you navigate around in the game, you may have came across something akin to the below screen:
 
 .. image::
-    ../../../images/unsupported_request_YPBU7MD8.png
+    ../../../images/gme-index/unsupported_request_YPBU7MD8.png
 
 This can happen when the client sends a game request that the server does not recognize or support. In the above example, 
 the client sent a game request with the ID ``YPBU7MD8`` which the server does not have a handler for.
