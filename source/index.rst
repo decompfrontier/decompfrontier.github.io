@@ -15,6 +15,7 @@ and formats of the Brave Frontier (v2.19.6.0) game.
    :caption: Contents
 
    pages/Status/index
-   pages/Architecture/index
-   pages/Network/index
    pages/Tutorial/index
+   pages/Architecture/index
+   pages/Contrib/index
+   pages/Network/index

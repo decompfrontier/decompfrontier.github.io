@@ -1,8 +1,9 @@
-Tutorial
+Setting up
 ===============================
 
-This page aims to hold some tutorials/help to setup the decompfrontier repositories and similar
-administration stuff.
+Are you looking to setup a development instance of the decompfrontier repositories?
+This page will assist you in setting up both a development client and development server,
+as well as the infrastructure for the client decompilation.
 
 .. important::
 
@@ -22,4 +23,3 @@ administration stuff.
 
     dev-client-winrt
     dev-server
-    writing-a-new-packet
