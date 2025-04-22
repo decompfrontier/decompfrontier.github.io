@@ -23,3 +23,4 @@ as well as the infrastructure for the client decompilation.
 
     dev-server
     dev-client-winrt
+    decomp-setup
