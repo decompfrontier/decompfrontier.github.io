@@ -110,14 +110,11 @@ Configure and build the server project using CMake with a preset for your operat
 
 **Steps**:
 
-Using CMake, select the preset ``Development config for XXXXX (64-bit)`` based on your operating system. Alternatively, use one of these commands in a terminal (e.g., Developer PowerShell for VS 2022 on Windows):
+Open Visual Studio Community 2022 and select open project (Using CMake option).
 
-- ``cmake --preset debug-win64`` (Windows)
-- ``cmake --preset debug-lnx64`` (Linux)
-- ``cmake --preset debug-osx64`` (macOS)
+This will prompt you to select the CMakeList.txt file of your project.
 
-.. warning::
-   If you encounter an error (e.g., "The C++ compiler is not able to compile a simple test program" or a missing `rc.exe` issue), you may be missing critical components in your Visual Studio installation. To resolve this, uninstall all Visual Studio components, then return to the "Installing Visual Studio 2022 Community with C++ for Developers" section and reinstall from scratch, ensuring all required workloads and components (e.g., Windows 10 SDK, MSVC v143) are selected.
+Select the CMakeList.txt file located in the root of your ``server`` directory and wait about 5 - 10 minutes for this to build.
 
 Once built, you’ll find a binary named ``gimuserverw`` in the ``server\standalone_frontend`` folder. This is your development server executable, which you can run and debug to implement new features.
 
