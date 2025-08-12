@@ -4,13 +4,13 @@
    :format: html
 
 Setting Up a Development Game Client (Windows 8.1+)
-==================================================
+====================================================
 
 .. contents::
    :local:
 
 Introduction
-------------
+-------------
 
 This tutorial guides you through setting up a development game client for Brave Frontier on Windows 8.1 and later, enabling offline play via a local proxy server. It assumes you have Visual Studio 2022 installed with the Desktop development with C++ workload and the Windows 10 SDK. The process involves cloning the repository, building the proxy, generating certificates, modifying the game client, and enabling loopback for local testing.
 
@@ -18,7 +18,7 @@ This tutorial guides you through setting up a development game client for Brave 
    If you are brand new to development, follow the exact folder structure shown in this tutorial (e.g., creating a folder named BF under your user profile directory). This will make storage and following along easier. You are free to use any folder structure you are comfortable with, but adjust paths in commands accordingly.
 
 Requirements
-------------
+-------------
 
 .. warning::
    If Developer Mode is not installed or enabled in Windows, the proxy will not function, and you will not see the command prompt.
@@ -30,7 +30,7 @@ Requirements
 - Administrator privileges
 
 Cloning the Repository
-----------------------
+-----------------------
 
 To clone the offline-proxy repository, open PowerShell and run the following command:
 
@@ -44,7 +44,7 @@ To clone the offline-proxy repository, open PowerShell and run the following com
    The `$env:USERPROFILE` variable automatically points to your user directory (e.g., `C:\Users\YourUsername`). Adjust the path if you use a different structure.
 
 Building the Proxy
-------------------
+-------------------
 
 .. warning::
    The client only supports 32-bit platforms. Ensure the build targets Win32.
@@ -66,7 +66,7 @@ Build the proxy using the following steps:
 If the build fails, open ``offline-proxy.sln`` in Visual Studio 2022, set the solution platform to Win32 and configuration to Debug, then build (F7 or, with an "Fn Lock" keyboard, ``Fn`` + ``F7``). After a successful build, locate ``libcurl.dll`` in ``$env:USERPROFILE\BF\offline-proxy\bin\libcurl.dll`` (or search the bin folder).
 
 Generating UWP Development Certificates
----------------------------------------
+----------------------------------------
 
 Generate a development certificate to sign the modified client:
 
@@ -101,7 +101,7 @@ Install the certificate:
    All commands must be executed in PowerShell with administrator privileges.
 
 Obtaining the APPX File
------------------------
+------------------------
 
 Download the unmodified Brave Frontier APPX file from the provided link:
 
@@ -112,7 +112,7 @@ Download the unmodified Brave Frontier APPX file from the provided link:
    Verify the file size (~100MB) to ensure integrity. This file is not publicly hosted elsewhere; direct downloads are rare and often risky (e.g., APKs from APKPure/BlueStacks). If issues arise, extract from an installed app: ``Get-AppxPackage *BraveFrontier* | Export-AppxPackage -Path $env:USERPROFILE\BF\BraveFrontier.appx``.
 
 Modifying Brave Frontier APPX
------------------------------
+------------------------------
 
 Unpack and modify the APPX file using Developer PowerShell for Visual Studio 2022:
 
@@ -148,7 +148,7 @@ Edit the manifest:
    All commands must be executed in Developer PowerShell for Visual Studio 2022.
 
 Packing and Signing the Modified Client
----------------------------------------
+-----------------------------------------
 
 Pack and sign the modified APPX in Developer PowerShell for Visual Studio 2022:
 
@@ -161,7 +161,7 @@ Pack and sign the modified APPX in Developer PowerShell for Visual Studio 2022:
    Ensure the password matches the one used during certificate export.
 
 Running the Game
-----------------
+-----------------
 
 Install the patched client:
 
@@ -190,12 +190,12 @@ Launch the game by searching "Brave Frontier" in the Start menu. A console windo
    - Developer Mode is enabled on your Windows PC.
 
 Connecting to the Server
-------------------------
+--------------------------
 
 Run the standalone server (e.g., ``standalone_frontend.exe`` from prior server automation) on ``127.0.0.1:9960``. With the loopback utility configured, the game should connect to the local server and display the login screen.
 
 Troubleshooting
----------------
+----------------
 
 - **Build Fails**: Ensure Visual Studio 2022 C++ workload is installed. Rebuild in VS if needed.
 - **Unpack Error**: Verify the APPX path and Developer PowerShell for Visual Studio 2022 usage.
