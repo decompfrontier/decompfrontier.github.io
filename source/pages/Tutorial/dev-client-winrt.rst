@@ -186,6 +186,7 @@ Launch the game by searching "Brave Frontier" in the Start menu. A console windo
 
 .. warning::
    If no console appears, verify the following:
+   
    - The patched ``libcurl.dll`` was correctly installed.
    - Developer Mode is enabled on your Windows PC.
 
