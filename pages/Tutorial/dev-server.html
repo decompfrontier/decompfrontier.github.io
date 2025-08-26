@@ -1,0 +1,1018 @@
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="index.html">
+      
+      
+        <link rel="next" href="dev-client-winrt.html">
+      
+      
+      <link rel="icon" href="">
+    
+    
+      
+        <title>Setting Up a Development Game Server - Decompfrontier gh-pages documentation</title>
+      
+    
+    
+      
+        
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+        <link rel="stylesheet" type="text/css" href="../../_static/sphinx_immaterial_theme.6ec1c446c2c357833.min.css?v=e2e8fea8" />
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#installing-visual-studio-2022-community-with-c-for-developers" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../index.html" title="Decompfrontier gh-pages documentation" class="md-header__button md-logo" aria-label="Decompfrontier gh-pages documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Decompfrontier gh-pages documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Setting Up a Development Game Server
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9zM20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12zm-9.15 3.96h2.3L12 9z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="light-green" data-md-color-accent="light-blue"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7M9 21a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-1H9z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="deep-orange" data-md-color-accent="lime"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7M9 21v-1h6v1a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1m3-17a5 5 0 0 0-5 5c0 2.05 1.23 3.81 3 4.58V16h4v-2.42c1.77-.77 3-2.53 3-4.58a5 5 0 0 0-5-5"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/decompfrontier/decompfrontier.github.io/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    decompfrontier.github.io
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../index.html" title="Decompfrontier gh-pages documentation" class="md-nav__button md-logo" aria-label="Decompfrontier gh-pages documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+    </a>
+    Decompfrontier gh-pages documentation
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/decompfrontier/decompfrontier.github.io/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    decompfrontier.github.io
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    <span>Contents</span>
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            <span>Contents</span>
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Status/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>Status</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_2" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="index.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    <span>Setting up</span>
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_1_2" id="__nav_1_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_1_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_1_2">
+            <span class="md-nav__icon md-icon"></span>
+            <span>Setting up</span>
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    <span>Setting Up a Development Game Server</span>
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="#" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>Setting Up a Development Game Server</span>
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+  
+
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      <span>Setting Up a Development Game Server</span>
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#installing-visual-studio-2022-community-with-c-for-developers" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>Installing Visual Studio 2022 Community with C++ for Developers</span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cloning-the-server-repository" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>Cloning the Server Repository</span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#setting-up-vcpkg" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>Setting Up vcpkg</span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#building-the-server-using-cmake" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>Building the Server Using CMake</span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#final-stretch" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>Final Stretch</span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-s-next" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>What’s next?</span>
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="dev-client-winrt.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>Setting Up a Development Game Client <wbr>(Windows 8.<wbr>1+)</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="decomp-setup.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>Setting up an environment for the client decompilation</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Architecture/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>Architecture</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Contrib/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>How to contribute</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Network/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>Network</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      <span>Setting Up a Development Game Server</span>
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#installing-visual-studio-2022-community-with-c-for-developers" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>Installing Visual Studio 2022 Community with C++ for Developers</span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cloning-the-server-repository" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>Cloning the Server Repository</span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#setting-up-vcpkg" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>Setting Up vcpkg</span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#building-the-server-using-cmake" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>Building the Server Using CMake</span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#final-stretch" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>Final Stretch</span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-s-next" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>What’s next?</span>
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset" role="main">
+                
+                
+                  
+
+
+  
+    <a href="https://github.com/decompfrontier/decompfrontier.github.io/blob/main/source/pages/Tutorial/dev-server.rst" title="Edit this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+    
+      
+    
+    <a href="https://github.com/decompfrontier/decompfrontier.github.io/raw/main/source/pages/Tutorial/dev-server.rst" title="View source of this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"/></svg>
+    </a>
+  
+
+<h1 id="setting-up-a-development-game-server">Setting Up a Development Game Server<a class="headerlink" href="#setting-up-a-development-game-server" title="Link to this heading">¶</a></h1>
+<p>This guide walks you through the chronological steps to set up a development environment for the Brave Frontier emulator server, ensuring all prerequisites are met and potential issues are avoided from the start.</p>
+<h2 id="installing-visual-studio-2022-community-with-c-for-developers">Installing Visual Studio 2022 Community with C++ for Developers<a class="headerlink" href="#installing-visual-studio-2022-community-with-c-for-developers" title="Link to this heading">¶</a></h2>
+<p>Before cloning the server repository or setting up dependencies, install Visual Studio 2022 Community with the necessary C++ development tools to prevent common build errors, such as the <code class="docutils literal notranslate"><span class="pre">missing</span> <span class="pre">rc.exe</span></code> issue.</p>
+<p><strong>Steps</strong>:</p>
+<ol class="arabic">
+<li><p>Download and install Visual Studio 2022 Community from <cite>https://visualstudio.microsoft.com/downloads/</cite>. (For best results, run the installer with Admin Privileges)</p></li>
+<li><p>During installation, select the following in the Visual Studio Installer:</p>
+<ul class="simple">
+<li><p><strong>Workload</strong>: “Desktop development with C++” (ensure this is checked).</p></li>
+<li><p><strong>Individual Components</strong> (under “Installation details”):</p>
+<ul>
+<li><p>“Windows 10 SDK” (select the latest version, e.g., 10.0.22621.0).</p></li>
+<li><p>“MSVC v143 - VS 2022 C++ x64/x86 build tools.” (Usually selected by default)</p></li>
+</ul>
+</li>
+</ul>
+<img alt="../../_images/VisualStudio2022COptions.png" src="../../_images/VisualStudio2022COptions.png" />
+</li>
+<li><p>Click “Install while downloading” or “Modify” to apply changes (approximately 10.7 GB of additional space may be required).</p></li>
+</ol>
+<div class="note admonition">
+<p class="admonition-title">Note</p>
+<p>To verify all files are installed correctly, you can modify your Visual Studio installation at any time using the Visual Studio Installer. Open the installer, select “Modify” for Visual Studio 2022 Community, and ensure the above components are checked. This step can help confirm the presence of critical tools like <code class="docutils literal notranslate"><span class="pre">rc.exe</span></code>, which is necessary for building C++ projects.</p>
+</div>
+<h2 id="cloning-the-server-repository">Cloning the Server Repository<a class="headerlink" href="#cloning-the-server-repository" title="Link to this heading">¶</a></h2>
+<p>Clone the server repository to begin working on the Brave Frontier emulator server.</p>
+<p><strong>Steps</strong>:</p>
+<p>To clone the server repository, run the following command in a terminal (e.g., Git Bash, Command Prompt, or PowerShell):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><code><span class="n">git</span> <span class="n">clone</span> <span class="o">--</span><span class="n">depth</span><span class="o">=</span><span class="mi">1</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">decompfrontier</span><span class="o">/</span><span class="n">server</span>
+</code></pre></div>
+</div>
+<div class="note admonition">
+<p class="admonition-title">Note</p>
+<p>Ensure Git is installed on your system (a base installation is all you need).</p>
+</div>
+<h2 id="setting-up-vcpkg">Setting Up vcpkg<a class="headerlink" href="#setting-up-vcpkg" title="Link to this heading">¶</a></h2>
+<p>Set up <cite>vcpkg</cite>, a C++ library manager, to handle dependencies for the server project.</p>
+<p><strong>Steps</strong>:</p>
+<ol class="arabic">
+<li><p>Clone the <cite>vcpkg</cite> repository and bootstrap it with metrics disabled:</p>
+<ul>
+<li><p>In a terminal, run:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><code><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">microsoft</span><span class="o">/</span><span class="n">vcpkg</span><span class="o">.</span><span class="n">git</span>
+<span class="n">cd</span> <span class="n">vcpkg</span>
+<span class="o">.</span>\<span class="n">bootstrap</span><span class="o">-</span><span class="n">vcpkg</span> <span class="o">-</span><span class="n">disableMetrics</span>  <span class="p">(</span><span class="k">for</span> <span class="n">Windows</span><span class="p">,</span> <span class="n">PowerShell</span><span class="p">)</span>
+<span class="o">./</span><span class="n">bootstrap</span><span class="o">-</span><span class="n">vcpkg</span><span class="o">.</span><span class="n">sh</span> <span class="o">-</span><span class="n">disableMetrics</span>  <span class="p">(</span><span class="k">for</span> <span class="n">Linux</span><span class="o">/</span><span class="n">macOS</span><span class="p">)</span>
+</code></pre></div>
+</div>
+</li>
+</ul>
+</li>
+</ol>
+<div class="admonition">
+<p class="admonition-title">Windows-Only Extra Steps</p>
+<p>On Windows, open an elevated PowerShell (Run as Administrator) and run the following command in your <cite>vcpkg</cite> directory:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><code><span class="o">.</span>\<span class="n">vcpkg</span> <span class="n">integrate</span> <span class="n">install</span>
+</code></pre></div>
+</div>
+</div>
+<ol class="arabic" start="2">
+<li><p>Set up a permanent environment variable named <code class="docutils literal notranslate"><span class="pre">VCPKG_ROOT</span></code> pointing to your <cite>vcpkg</cite> installation directory. Choose one of the following methods based on your preference:</p>
+<ul>
+<li><p><strong>User-Level (Recommended)</strong>: Sets the variable for your user account only. In a PowerShell terminal, run:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><code><span class="p">[</span><span class="n">Environment</span><span class="p">]::</span><span class="n">SetEnvironmentVariable</span><span class="p">(</span><span class="s2">&quot;VCPKG_ROOT&quot;</span><span class="p">,</span> <span class="s2">&quot;C:\Projects</span><span class="se">\v</span><span class="s2">cpkg&quot;</span><span class="p">,</span> <span class="s2">&quot;User&quot;</span><span class="p">)</span>
+</code></pre></div>
+</div>
+</li>
+<li><p><strong>System-Level (Admin Required)</strong>: Sets the variable for all users on the system. In an elevated PowerShell (Run as Administrator), run:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><code><span class="p">[</span><span class="n">Environment</span><span class="p">]::</span><span class="n">SetEnvironmentVariable</span><span class="p">(</span><span class="s2">&quot;VCPKG_ROOT&quot;</span><span class="p">,</span> <span class="s2">&quot;C:\Projects</span><span class="se">\v</span><span class="s2">cpkg&quot;</span><span class="p">,</span> <span class="s2">&quot;Machine&quot;</span><span class="p">)</span>
+</code></pre></div>
+</div>
+</li>
+<li><p>Replace <code class="docutils literal notranslate"><span class="pre">C:\Projects\vcpkg</span></code> with the actual path to your <cite>vcpkg</cite> folder (e.g., <code class="docutils literal notranslate"><span class="pre">A:\BF\vcpkg</span></code> if that’s where it’s located).</p></li>
+<li><p>To verify it worked, restart your terminal and run:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><code>$env:VCPKG_ROOT
+</code></pre></div>
+</div>
+<p>Example Output: <code class="docutils literal notranslate"><span class="pre">C:\Projects\vcpkg</span></code></p>
+</li>
+<li><p>Alternatively, set it via the GUI:</p>
+<ul class="simple">
+<li><p>Open <cite>sysdm.cpl</cite> (via <cite>Windows Key + R</cite>), go to “Advanced” &gt; “Environment Variables.”</p></li>
+<li><p>Under “User variables” (for user-level) or “System variables” (for system-level, admin required), click “New”:</p>
+<ul>
+<li><p>Variable name: <code class="docutils literal notranslate"><span class="pre">VCPKG_ROOT</span></code></p></li>
+<li><p>Variable value: Your <cite>vcpkg</cite> path (e.g., <code class="docutils literal notranslate"><span class="pre">C:\Projects\vcpkg</span></code>).</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<div class="important tip admonition">
+<p class="admonition-title">Important</p>
+<p>Setting <code class="docutils literal notranslate"><span class="pre">VCPKG_ROOT</span></code> permanently is required for this and subsequent tutorials. Ensure you choose the method (user-level or system-level) that best suits your setup to avoid issues later.</p>
+</div>
+<h2 id="building-the-server-using-cmake">Building the Server Using CMake<a class="headerlink" href="#building-the-server-using-cmake" title="Link to this heading">¶</a></h2>
+<p>Configure and build the server project using CMake with a preset for your operating system.</p>
+<p><strong>Steps</strong>:</p>
+<p>Using CMake, select the preset <code class="docutils literal notranslate"><span class="pre">Development</span> <span class="pre">config</span> <span class="pre">for</span> <span class="pre">XXXXX</span> <span class="pre">(64-bit)</span></code> based on your operating system. Alternatively, use one of these commands in a terminal (e.g., Developer PowerShell for VS 2022 on Windows):</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cmake</span> <span class="pre">--preset</span> <span class="pre">debug-win64</span></code> (Windows)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cmake</span> <span class="pre">--preset</span> <span class="pre">debug-lnx64</span></code> (Linux)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cmake</span> <span class="pre">--preset</span> <span class="pre">debug-osx64</span></code> (macOS)</p></li>
+</ul>
+<div class="warning admonition">
+<p class="admonition-title">Warning</p>
+<p>If you encounter an error (e.g., “The C++ compiler is not able to compile a simple test program” or a missing <cite>rc.exe</cite> issue), you may be missing critical components in your Visual Studio installation. To resolve this, uninstall all Visual Studio components, then return to the “Installing Visual Studio 2022 Community with C++ for Developers” section and reinstall from scratch, ensuring all required workloads and components (e.g., Windows 10 SDK, MSVC v143) are selected.</p>
+</div>
+<p>Once built, you’ll find a binary named <code class="docutils literal notranslate"><span class="pre">gimuserverw</span></code> in the <code class="docutils literal notranslate"><span class="pre">server\standalone_frontend</span></code> folder. This is your development server executable, which you can run and debug to implement new features.</p>
+<div class="hint tip admonition">
+<p class="admonition-title">Hint</p>
+<p>At this point, if there are no errors in the console, you are free to close the admin PowerShell (and remove VCPKG_ROOT from root)</p>
+</div>
+<p>Double Click <code class="docutils literal notranslate"><span class="pre">gimuserverw.vcxproj</span></code> to open Visual Studio 2022 Community.</p>
+<p>In Visual Studio 2022 Community, right click <code class="docutils literal notranslate"><span class="pre">gimuserverw</span></code> in the Solution Explorer pane and select <code class="docutils literal notranslate"><span class="pre">Set</span> <span class="pre">as</span> <span class="pre">Startup</span> <span class="pre">Project</span></code>.</p>
+<img alt="../../_images/SettingUpTheServer1.png" src="../../_images/SettingUpTheServer1.png" />
+<p>From here, select the <code class="docutils literal notranslate"><span class="pre">Debug</span></code> dropdown menu in the top ribbon. Select <code class="docutils literal notranslate"><span class="pre">gimuserverw</span> <span class="pre">Debug</span> <span class="pre">Properties</span></code> at the bottom of the dropdown.</p>
+<img alt="../../_images/SettingUpTheServer2.png" src="../../_images/SettingUpTheServer2.png" />
+<p>In this pop-up window, select <code class="docutils literal notranslate"><span class="pre">Debugging</span></code> under <code class="docutils literal notranslate"><span class="pre">Configuration</span> <span class="pre">Properties</span></code>, Change <code class="docutils literal notranslate"><span class="pre">Configuration:</span></code> dropdown to <code class="docutils literal notranslate"><span class="pre">All</span> <span class="pre">Configurations</span></code>, then change <code class="docutils literal notranslate"><span class="pre">Working</span> <span class="pre">Directory</span></code> to the <code class="docutils literal notranslate"><span class="pre">server\deploy</span></code> folder. Click <code class="docutils literal notranslate"><span class="pre">OK</span></code> to close this window, then click <code class="docutils literal notranslate"><span class="pre">Apply</span></code> and finally <code class="docutils literal notranslate"><span class="pre">OK</span></code> to return to Visual Studio 2022 Community.</p>
+<img alt="../../_images/SettingUpTheServer3.png" src="../../_images/SettingUpTheServer3.png" />
+<img alt="../../_images/SettingUpTheServer4.png" src="../../_images/SettingUpTheServer4.png" />
+<h2 id="final-stretch">Final Stretch<a class="headerlink" href="#final-stretch" title="Link to this heading">¶</a></h2>
+<p>Complete the server setup by downloading and organizing assets.</p>
+<p><strong>Steps</strong>:</p>
+<ol class="arabic">
+<li><p>Download the assets from <a class="reference external" href="https://drive.google.com/file/d/1ApVcJISPovYuWEidnkkTJi_NI8sD1Xmx/view">21900.zip</a>.</p></li>
+<li><p>Extract <code class="docutils literal notranslate"><span class="pre">assets.zip</span></code> from <code class="docutils literal notranslate"><span class="pre">21900.zip</span></code> as shown below:</p>
+<img alt="../../_images/archive_21900.png" src="../../_images/archive_21900.png" />
+</li>
+<li><p>Open <code class="docutils literal notranslate"><span class="pre">assets.zip</span></code> and extract the <code class="docutils literal notranslate"><span class="pre">content</span></code> and <code class="docutils literal notranslate"><span class="pre">mst</span></code> folders into <code class="docutils literal notranslate"><span class="pre">deploy/game_content</span></code> (if this folder doesn’t exist make it):</p>
+<img alt="../../_images/assets_zip.png" src="../../_images/assets_zip.png" />
+<p>After extraction, you should have two folders, <code class="docutils literal notranslate"><span class="pre">content</span></code> and <code class="docutils literal notranslate"><span class="pre">mst</span></code>, inside <code class="docutils literal notranslate"><span class="pre">game_content</span></code>:</p>
+<img alt="../../_images/servercontent_root.png" src="../../_images/servercontent_root.png" />
+<p>The <code class="docutils literal notranslate"><span class="pre">content</span></code> folder should contain the following assets:</p>
+<img alt="../../_images/servercontent_content.png" src="../../_images/servercontent_content.png" />
+<p>The <code class="docutils literal notranslate"><span class="pre">mst</span></code> folder should contain these assets:</p>
+<img alt="../../_images/servercontent_mst.png" src="../../_images/servercontent_mst.png" />
+</li>
+<li><p>Modify the server configuration by editing the JSON files in the <code class="docutils literal notranslate"><span class="pre">system</span></code> directory. You can also adjust additional settings in <code class="docutils literal notranslate"><span class="pre">gimuconfig.json</span></code> and tweak Drogon-specific options in <code class="docutils literal notranslate"><span class="pre">config.json</span></code>.</p></li>
+</ol>
+<p>Your environment is now fully set up and ready for developing the Brave Frontier emulator. You can run the server by clicking the <code class="docutils literal notranslate"><span class="pre">Green</span> <span class="pre">Filled-in</span> <span class="pre">Play</span> <span class="pre">Button</span></code> at the top of Visual Studio 2022 Community.</p>
+<h2 id="what-s-next">What’s next?<a class="headerlink" href="#what-s-next" title="Link to this heading">¶</a></h2>
+<div class="important tip admonition">
+<p class="admonition-title">Important</p>
+<p>Now that you are done with the server set-up, please make your way over to game client set-up for installation steps.</p>
+</div>
+<div class="note admonition">
+<p class="admonition-title">Note</p>
+<p>If you encountered an error in set-up or a bug is preventing you from progressing in one of these tutorials, please create an <code class="docutils literal notranslate"><span class="pre">Issue</span></code> on the main repo. Thanks for your interest in our project!</p>
+</div>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="index.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: Setting up">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Setting up
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="dev-client-winrt.html" class="md-footer__link md-footer__link--next" aria-label="Next: Setting Up a Development Game Client (Windows 8.1+)">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Setting Up a Development Game Client (Windows 8.1+)
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  
+  
+  <div class="md-footer-meta md-typeset">
+    
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-footer-copyright__highlight">
+        &#169; Copyright 2023-2025 Arves100.
+        
+    </div>
+  
+    Created using
+    <a href="https://www.sphinx-doc.org/" target="_blank" rel="noopener">Sphinx</a>
+    8.2.3.
+     and
+    <a href="https://github.com/jbms/sphinx-immaterial/" target="_blank" rel="noopener">Sphinx-Immaterial</a>
+  
+</div>
+      
+    </div>
+    
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.expand", "navigation.sections", "navigation.footer", "navigation.top", "search.share", "search.suggest", "toc.follow", "toc.sticky", "content.tabs.link", "content.code.copy", "content.action.edit", "content.action.view", "content.tooltips"], "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+      
+        <script src="../../_static/sphinx_immaterial_theme.32136f45f91ae6956.min.js?v=a7a9472a"></script>
+    
+  </body>
+</html>

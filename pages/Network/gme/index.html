@@ -1,0 +1,860 @@
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../gumilive/SLAPI.html">
+      
+      
+      
+      <link rel="icon" href="">
+    
+    
+      
+        <title>Game Server - Decompfrontier gh-pages documentation</title>
+      
+    
+    
+      
+        
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+        <link rel="stylesheet" type="text/css" href="../../../_static/sphinx_immaterial_theme.6ec1c446c2c357833.min.css?v=e2e8fea8" />
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#understanding-game-client-requests" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../index.html" title="Decompfrontier gh-pages documentation" class="md-header__button md-logo" aria-label="Decompfrontier gh-pages documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Decompfrontier gh-pages documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Game Server
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9zM20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12zm-9.15 3.96h2.3L12 9z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="light-green" data-md-color-accent="light-blue"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7M9 21a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-1H9z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="deep-orange" data-md-color-accent="lime"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7M9 21v-1h6v1a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1m3-17a5 5 0 0 0-5 5c0 2.05 1.23 3.81 3 4.58V16h4v-2.42c1.77-.77 3-2.53 3-4.58a5 5 0 0 0-5-5"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/decompfrontier/decompfrontier.github.io/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    decompfrontier.github.io
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../index.html" title="Decompfrontier gh-pages documentation" class="md-nav__button md-logo" aria-label="Decompfrontier gh-pages documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+    </a>
+    Decompfrontier gh-pages documentation
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/decompfrontier/decompfrontier.github.io/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    decompfrontier.github.io
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    <span>Contents</span>
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            <span>Contents</span>
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Status/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>Status</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Tutorial/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>Setting up</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Architecture/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>Architecture</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Contrib/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>How to contribute</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_5" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../index.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    <span>Network</span>
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_1_5" id="__nav_1_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_1_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_1_5">
+            <span class="md-nav__icon md-icon"></span>
+            <span>Network</span>
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gumilive/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>Gumi Live</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    <span>Game Server</span>
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="#" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>Game Server</span>
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+  
+
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      <span>Game Server</span>
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#understanding-game-client-requests" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>Understanding Game Client Requests</span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#understanding-game-server-responses" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>Understanding Game Server Responses</span>
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      <span>Game Server</span>
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#understanding-game-client-requests" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>Understanding Game Client Requests</span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#understanding-game-server-responses" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>Understanding Game Server Responses</span>
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset" role="main">
+                
+                
+                  
+
+
+  
+    <a href="https://github.com/decompfrontier/decompfrontier.github.io/blob/main/source/pages/Network/gme/index.rst" title="Edit this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+    
+      
+    
+    <a href="https://github.com/decompfrontier/decompfrontier.github.io/raw/main/source/pages/Network/gme/index.rst" title="View source of this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"/></svg>
+    </a>
+  
+
+<h1 id="game-server">Game Server<a class="headerlink" href="#game-server" title="Link to this heading">¶</a></h1>
+<p>The game server (GME) is the main server which all the actions of Brave Frontier are done.</p>
+<p>The original server was written in PHP (according to a leak of one misconfigured file) as a REST api,
+each key of the JSON are not written in plaintext, rather they seems to be an hash of the field name,
+this is presumably done to complex the analysis of the packets.</p>
+<p>The flow of a GME packet follows as this file: (apply the opposite for reading one)</p>
+<div class="info admonition">
+<p class="admonition-title">Info</p>
+<p>The AES cryptation key changes based from the Game request.</p>
+</div>
+<img alt="../../../_images/gme_flow.png" src="../../../_images/gme_flow.png" />
+<ol class="arabic simple">
+<li><p>The actual JSON packet gets created by the client</p></li>
+<li><p>The packet is crypted with AES/ECB and encoded in Base-64 with a key that changes for every request type</p></li>
+<li><p>The encrypted JSON is then embedded in a GME JSON</p></li>
+</ol>
+<p>This is what a completed GME packet looks like:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><code><span class="p">{</span>
+    <span class="s2">&quot;F4q6i9xe&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;aV6cLn3v&quot;</span><span class="p">:</span> <span class="s2">&quot;Client ID that send the request&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Hhgi79M1&quot;</span><span class="p">:</span> <span class="s2">&quot;Game request&quot;</span>
+<span class="p">},</span>
+    <span class="s2">&quot;a3vSYuq2&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;Kn51uR4Y&quot;</span><span class="p">:</span> <span class="s2">&quot;Encrypted JSON body&quot;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+</div>
+<h2 id="understanding-game-client-requests">Understanding Game Client Requests<a class="headerlink" href="#understanding-game-client-requests" title="Link to this heading">¶</a></h2>
+<p>As you navigate around in the game, you may have came across something akin to the below screen:</p>
+<img alt="../../../_images/unsupported_request_YPBU7MD8.png" src="../../../_images/unsupported_request_YPBU7MD8.png" />
+<p>This can happen when the client sends a game request that the server does not recognize or support. In the above example,
+the client sent a game request with the ID <code class="docutils literal notranslate"><span class="pre">YPBU7MD8</span></code> which the server does not have a handler for.</p>
+<p>For a more concrete example, take a look at the server console to see what happens whenever the home menu button is pressed
+in the game client:</p>
+<blockquote>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><code><span class="mi">20250319</span> <span class="mi">00</span><span class="p">:</span><span class="mi">45</span><span class="p">:</span><span class="mf">49.594000</span> <span class="n">UTC</span> <span class="mi">35296</span> <span class="n">TRACE</span> <span class="p">[</span><span class="n">newConnection</span><span class="p">]</span> <span class="n">new</span> <span class="n">connection</span><span class="p">:</span><span class="n">fd</span><span class="o">=</span><span class="mi">516</span> <span class="n">address</span><span class="o">=</span><span class="mf">127.0.0.1</span><span class="p">:</span><span class="mi">53896</span> <span class="o">-</span> <span class="n">TcpServer</span><span class="o">.</span><span class="n">cc</span><span class="p">:</span><span class="mi">62</span>
+<span class="mi">20250319</span> <span class="mi">00</span><span class="p">:</span><span class="mi">45</span><span class="p">:</span><span class="mf">49.594000</span> <span class="n">UTC</span> <span class="mi">35296</span> <span class="n">TRACE</span> <span class="p">[</span><span class="n">TcpConnectionImpl</span><span class="p">]</span> <span class="n">new</span> <span class="n">connection</span><span class="p">:</span><span class="mf">127.0.0.1</span><span class="p">:</span><span class="mi">53896</span><span class="o">-&gt;</span><span class="mf">127.0.0.1</span><span class="p">:</span><span class="mi">9960</span> <span class="o">-</span> <span class="n">TcpConnectionImpl</span><span class="o">.</span><span class="n">cc</span><span class="p">:</span><span class="mi">78</span>
+<span class="mi">20250319</span> <span class="mi">00</span><span class="p">:</span><span class="mi">45</span><span class="p">:</span><span class="mf">49.594000</span> <span class="n">UTC</span> <span class="mi">21908</span> <span class="n">TRACE</span> <span class="p">[</span><span class="n">operator</span> <span class="p">()]</span> <span class="n">connectEstablished</span> <span class="o">-</span> <span class="n">TcpConnectionImpl</span><span class="o">.</span><span class="n">cc</span><span class="p">:</span><span class="mi">262</span>
+<span class="mi">20250319</span> <span class="mi">00</span><span class="p">:</span><span class="mi">45</span><span class="p">:</span><span class="mf">49.594000</span> <span class="n">UTC</span> <span class="mi">21908</span> <span class="n">TRACE</span> <span class="p">[</span><span class="n">onHttpRequest</span><span class="p">]</span> <span class="n">new</span> <span class="n">request</span><span class="p">:</span><span class="mf">127.0.0.1</span><span class="p">:</span><span class="mi">53896</span><span class="o">-&gt;</span><span class="mf">127.0.0.1</span><span class="p">:</span><span class="mi">9960</span> <span class="o">-</span> <span class="n">HttpServer</span><span class="o">.</span><span class="n">cc</span><span class="p">:</span><span class="mi">415</span>
+<span class="mi">20250319</span> <span class="mi">00</span><span class="p">:</span><span class="mi">45</span><span class="p">:</span><span class="mf">49.594000</span> <span class="n">UTC</span> <span class="mi">21908</span> <span class="n">TRACE</span> <span class="p">[</span><span class="n">onHttpRequest</span><span class="p">]</span> <span class="n">Headers</span> <span class="n">POST</span> <span class="o">/</span><span class="n">bf</span><span class="o">/</span><span class="n">gme</span><span class="o">/</span><span class="n">action</span><span class="o">.</span><span class="n">php</span> <span class="o">-</span> <span class="n">HttpServer</span><span class="o">.</span><span class="n">cc</span><span class="p">:</span><span class="mi">417</span>
+<span class="mi">20250319</span> <span class="mi">00</span><span class="p">:</span><span class="mi">45</span><span class="p">:</span><span class="mf">49.594000</span> <span class="n">UTC</span> <span class="mi">21908</span> <span class="n">TRACE</span> <span class="p">[</span><span class="n">onHttpRequest</span><span class="p">]</span> <span class="n">http</span> <span class="n">path</span><span class="o">=/</span><span class="n">bf</span><span class="o">/</span><span class="n">gme</span><span class="o">/</span><span class="n">action</span><span class="o">.</span><span class="n">php</span> <span class="o">-</span> <span class="n">HttpServer</span><span class="o">.</span><span class="n">cc</span><span class="p">:</span><span class="mi">418</span>
+</code></pre></div>
+</div>
+</div></blockquote>
+<p>We see that the client sends a POST request to the server with the path <code class="docutils literal notranslate"><span class="pre">/bf/gme/action.php</span></code>. We can gather more information by looking at
+the server request logs, located in <code class="docutils literal notranslate"><span class="pre">deploy/log_req</span></code>:</p>
+<blockquote>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><code>deploy/log_req
+  ├── NiYWKdzs_18_03_2025-21_11_46.json
+  ├── ...
+</code></pre></div>
+</div>
+</div></blockquote>
+<p>The first part of the filename, <code class="docutils literal notranslate"><span class="pre">NiYWKdzs</span></code>, is the client’s game request ID. In this particular example, when the home menu button was pressed,
+the client sent a POST request to path <code class="docutils literal notranslate"><span class="pre">/bf/gme/action.php</span></code> with game request ID <code class="docutils literal notranslate"><span class="pre">NiYWKdzs</span></code>. The decrypted JSON body of the request
+is stored in the file <code class="docutils literal notranslate"><span class="pre">NiYWKdzs_18_03_2025-21_11_46.json</span></code> itself.</p>
+<h2 id="understanding-game-server-responses">Understanding Game Server Responses<a class="headerlink" href="#understanding-game-server-responses" title="Link to this heading">¶</a></h2>
+<p>In the example above, the server handler for game request <code class="docutils literal notranslate"><span class="pre">NiYWKdzs</span></code> does not acutally send a response back. To look at an example where the server
+returns a response, try pressing the summon menu button in game, and pay close attention to the server console:</p>
+<blockquote>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><code><span class="mi">20250319</span> <span class="mi">01</span><span class="p">:</span><span class="mi">24</span><span class="p">:</span><span class="mf">10.735000</span> <span class="n">UTC</span> <span class="mi">35296</span> <span class="n">TRACE</span> <span class="p">[</span><span class="n">newConnection</span><span class="p">]</span> <span class="n">new</span> <span class="n">connection</span><span class="p">:</span><span class="n">fd</span><span class="o">=</span><span class="mi">524</span> <span class="n">address</span><span class="o">=</span><span class="mf">127.0.0.1</span><span class="p">:</span><span class="mi">55297</span> <span class="o">-</span> <span class="n">TcpServer</span><span class="o">.</span><span class="n">cc</span><span class="p">:</span><span class="mi">62</span>
+<span class="mi">20250319</span> <span class="mi">01</span><span class="p">:</span><span class="mi">24</span><span class="p">:</span><span class="mf">10.735000</span> <span class="n">UTC</span> <span class="mi">35296</span> <span class="n">TRACE</span> <span class="p">[</span><span class="n">TcpConnectionImpl</span><span class="p">]</span> <span class="n">new</span> <span class="n">connection</span><span class="p">:</span><span class="mf">127.0.0.1</span><span class="p">:</span><span class="mi">55297</span><span class="o">-&gt;</span><span class="mf">127.0.0.1</span><span class="p">:</span><span class="mi">9960</span> <span class="o">-</span> <span class="n">TcpConnectionImpl</span><span class="o">.</span><span class="n">cc</span><span class="p">:</span><span class="mi">78</span>
+<span class="mi">20250319</span> <span class="mi">01</span><span class="p">:</span><span class="mi">24</span><span class="p">:</span><span class="mf">10.735000</span> <span class="n">UTC</span> <span class="mi">2992</span> <span class="n">TRACE</span> <span class="p">[</span><span class="n">operator</span> <span class="p">()]</span> <span class="n">connectEstablished</span> <span class="o">-</span> <span class="n">TcpConnectionImpl</span><span class="o">.</span><span class="n">cc</span><span class="p">:</span><span class="mi">262</span>
+<span class="mi">20250319</span> <span class="mi">01</span><span class="p">:</span><span class="mi">24</span><span class="p">:</span><span class="mf">10.735000</span> <span class="n">UTC</span> <span class="mi">2992</span> <span class="n">TRACE</span> <span class="p">[</span><span class="n">onHttpRequest</span><span class="p">]</span> <span class="n">new</span> <span class="n">request</span><span class="p">:</span><span class="mf">127.0.0.1</span><span class="p">:</span><span class="mi">55297</span><span class="o">-&gt;</span><span class="mf">127.0.0.1</span><span class="p">:</span><span class="mi">9960</span> <span class="o">-</span> <span class="n">HttpServer</span><span class="o">.</span><span class="n">cc</span><span class="p">:</span><span class="mi">415</span>
+<span class="mi">20250319</span> <span class="mi">01</span><span class="p">:</span><span class="mi">24</span><span class="p">:</span><span class="mf">10.735000</span> <span class="n">UTC</span> <span class="mi">2992</span> <span class="n">TRACE</span> <span class="p">[</span><span class="n">onHttpRequest</span><span class="p">]</span> <span class="n">Headers</span> <span class="n">POST</span> <span class="o">/</span><span class="n">bf</span><span class="o">/</span><span class="n">gme</span><span class="o">/</span><span class="n">action</span><span class="o">.</span><span class="n">php</span> <span class="o">-</span> <span class="n">HttpServer</span><span class="o">.</span><span class="n">cc</span><span class="p">:</span><span class="mi">417</span>
+<span class="mi">20250319</span> <span class="mi">01</span><span class="p">:</span><span class="mi">24</span><span class="p">:</span><span class="mf">10.735000</span> <span class="n">UTC</span> <span class="mi">2992</span> <span class="n">TRACE</span> <span class="p">[</span><span class="n">onHttpRequest</span><span class="p">]</span> <span class="n">http</span> <span class="n">path</span><span class="o">=/</span><span class="n">bf</span><span class="o">/</span><span class="n">gme</span><span class="o">/</span><span class="n">action</span><span class="o">.</span><span class="n">php</span> <span class="o">-</span> <span class="n">HttpServer</span><span class="o">.</span><span class="n">cc</span><span class="p">:</span><span class="mi">418</span>
+<span class="mi">20250319</span> <span class="mi">01</span><span class="p">:</span><span class="mi">24</span><span class="p">:</span><span class="mf">11.077000</span> <span class="n">UTC</span> <span class="mi">2992</span> <span class="n">TRACE</span> <span class="p">[</span><span class="n">renderToBuffer</span><span class="p">]</span> <span class="n">response</span><span class="p">(</span><span class="n">no</span> <span class="n">body</span><span class="p">):</span><span class="n">HTTP</span><span class="o">/</span><span class="mf">1.1</span> <span class="mi">200</span> <span class="n">OK</span>
+<span class="n">content</span><span class="o">-</span><span class="n">length</span><span class="p">:</span> <span class="mi">1135062</span>
+<span class="n">content</span><span class="o">-</span><span class="nb">type</span><span class="p">:</span> <span class="n">application</span><span class="o">/</span><span class="n">json</span><span class="p">;</span> <span class="n">charset</span><span class="o">=</span><span class="n">utf</span><span class="o">-</span><span class="mi">8</span>
+<span class="n">server</span><span class="p">:</span> <span class="n">drogon</span><span class="o">/</span><span class="mf">1.9.10</span>
+<span class="n">content</span><span class="o">-</span><span class="n">encoding</span><span class="p">:</span> <span class="n">gzip</span>
+<span class="n">date</span><span class="p">:</span> <span class="n">Wed</span><span class="p">,</span> <span class="mi">19</span> <span class="n">Mar</span> <span class="mi">2025</span> <span class="mi">01</span><span class="p">:</span><span class="mi">24</span><span class="p">:</span><span class="mi">11</span> <span class="n">GMT</span>
+
+<span class="n">HttpResponseImpl</span><span class="o">.</span><span class="n">cc</span><span class="p">:</span><span class="mi">717</span>
+</code></pre></div>
+</div>
+</div></blockquote>
+<p>You will notice that most of the logs are similar to the previous example, except for the last few lines. The server sends a response back to the
+client with a status code of 200, and the response body is a JSON object with a size of 1135062 bytes. Let’s look at <code class="docutils literal notranslate"><span class="pre">deploy/log_res</span></code> to see the response log:</p>
+<blockquote>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><code>deploy/log_res
+  ├── Uo86DcRh_18_03_2025-21_32_15.json
+  ├── ...
+</code></pre></div>
+</div>
+</div></blockquote>
+<p>If you followed along and also looked at the most recent request log in <code class="docutils literal notranslate"><span class="pre">deploy/log_req</span></code>, you will know that <code class="docutils literal notranslate"><span class="pre">Uo86DcRh</span></code> is the game request ID
+for the pressing the summon menu button in the game client. Notice that the game response ID is the exact same as the request ID. Let’s now open the response log:</p>
+<blockquote>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><code><span class="p">{</span>
+    <span class="s2">&quot;1IR86sAv&quot;</span> <span class="p">:</span> <span class="p">[</span>
+        <span class="o">...</span>
+    <span class="p">],</span>
+    <span class="s2">&quot;6FrKacq7&quot;</span> <span class="p">:</span> <span class="p">[</span>
+        <span class="o">...</span>
+    <span class="p">],</span>
+    <span class="s2">&quot;IBs49NiH&quot;</span> <span class="p">:</span> <span class="p">[</span>
+        <span class="o">...</span>
+    <span class="p">],</span>
+    <span class="s2">&quot;fEi17cnx&quot;</span> <span class="p">:</span> <span class="p">[</span>
+        <span class="o">...</span>
+    <span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+</div>
+</div></blockquote>
+<div class="info admonition">
+<p class="admonition-title">Info</p>
+<p>See <a class="reference external" href="https://github.com/Seltraeh/decompfrontier.github.io/blob/main/source/pages/Tutorial/ProjectOverview.md">here</a>
+for a list of all currently parsed JSON network keys. This list is not exhaustive, and new keys are added as we decompile more of the game client.</p>
+</div>
+<p>Each key of the JSON body is also hashed. In this example, <code class="docutils literal notranslate"><span class="pre">1IR86sAv</span></code> is the key representing gatcha information.
+<code class="docutils literal notranslate"><span class="pre">6FrKacq7</span></code> denotes the signal key, <code class="docutils literal notranslate"><span class="pre">IBs49NiH</span></code> is gatcha categories, and <code class="docutils literal notranslate"><span class="pre">fEi17cnx</span></code> is the user’s current team information.
+The server sends these information to the client, which then updates and displays the gatcha banners accordingly.</p>
+<div class="toctree-wrapper compound" id="toc-network-gme">
+</div>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../gumilive/SLAPI.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: SLAPI">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                SLAPI
+              </div>
+            </div>
+          </a>
+        
+        
+      </nav>
+    
+  
+  
+  
+  <div class="md-footer-meta md-typeset">
+    
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-footer-copyright__highlight">
+        &#169; Copyright 2023-2025 Arves100.
+        
+    </div>
+  
+    Created using
+    <a href="https://www.sphinx-doc.org/" target="_blank" rel="noopener">Sphinx</a>
+    8.2.3.
+     and
+    <a href="https://github.com/jbms/sphinx-immaterial/" target="_blank" rel="noopener">Sphinx-Immaterial</a>
+  
+</div>
+      
+    </div>
+    
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.expand", "navigation.sections", "navigation.footer", "navigation.top", "search.share", "search.suggest", "toc.follow", "toc.sticky", "content.tabs.link", "content.code.copy", "content.action.edit", "content.action.view", "content.tooltips"], "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+      
+        <script src="../../../_static/sphinx_immaterial_theme.32136f45f91ae6956.min.js?v=a7a9472a"></script>
+    
+  </body>
+</html>
